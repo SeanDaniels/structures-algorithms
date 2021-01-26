@@ -17,3 +17,5 @@ At the most basic level, a node is structure that contains a key value and a poi
 
 # Searching
 A BST can be searched iteratively or recursively
+
+# Deleting
