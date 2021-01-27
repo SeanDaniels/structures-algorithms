@@ -43,6 +43,25 @@ Inserting a new node into a BST is accomplished with the following routined:
 - Locate appropriate position for new node
 - Point parent node to new node
 
+The pseudo code for inserting a new node is as follows:
+``` c++
+// point to root of bst
+Node* nodePtr = new Node(keyValue);
+if(root==nullptr)root = nodePtr;
+else{
+    Node* tmp = root;
+    while(tmp){
+    if(tmp->key > keyValue){
+        // if left node is available, place new node here
+        // if not, search left
+    }
+    else 
+    // if right node is available, place node here
+    // if not, search right
+    
+    }
+}
+```
 # Deleting
 In order to successfully remove a node from the BST, the node must be deleted and any pointers referencing the node must be updated. 
 
