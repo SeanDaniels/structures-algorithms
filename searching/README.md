@@ -1,3 +1,8 @@
+# Binary Search
+One method of searching through a data structure, such as an array, is iterate through each element of the structure until the desired element is found. This method is known as a linear search. 
+
+In some scenarios, it is wasteful to visit every element of a data structure to locate a particular element. A binary search removes some of this overhead by halving it's search range until the element is located. A binary search requires the structure being searched is sorted.
+
 # Binary Search Tree
 ![Binary Search Tree](/binary-search-tree/img/bst.jpg)
 
