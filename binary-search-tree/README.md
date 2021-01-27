@@ -38,4 +38,19 @@ while(nodePtr){
 return nodePtr;
 ```
 # Inserting
+Inserting a new node into a BST is accomplished with the following routined:
+- Create a new node
+- Locate appropriate position for new node
+- Point parent node to new node
+
 # Deleting
+In order to successfully remove a node from the BST, the node must be deleted and any pointers referencing the node must be updated. 
+
+While removing a node from a BST, the underlying structure of the BST must be retained. This may require updating the removed node's parents and children. This is summarized in the following 3 cases:
+- The removed node has no children
+- The removed node has either a left child or a right child (1 child)
+- The removed node has both a left child and a right child (2 children)
+
+
+In order to remove a node from a BST
+Removing a node from a BST 

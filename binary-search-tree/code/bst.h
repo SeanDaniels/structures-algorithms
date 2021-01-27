@@ -41,6 +41,15 @@ class BST{
     // function for removing key from tree
     void remove(int key);
 
+    // function for removing a node with no children
+    bool noChildren(Node* node, Node* parent);
+
+    // function for removing a node with one child
+    bool oneChild(Node* node, Node* parent);
+
+    // function for removing a node with two children
+    void twoChildren(Node* node, Node* parent);
+
 
 };
 
