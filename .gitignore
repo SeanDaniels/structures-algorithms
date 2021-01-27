@@ -1,0 +1,8 @@
+.DS_Store
+.idea
+*.log
+tmp/
+# all object files
+*.o
+# bst example
+/binary-search-tree/code/example
