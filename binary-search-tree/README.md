@@ -15,10 +15,27 @@ A BST allows binary search for looking up, adding, and removing items
 | Delete    | O(log n) | O(n)       |
 
 
-# What is a 'node'
+# Nodes
 At the most basic level, a node is structure that contains a key value and a pointer to it's own left subtree and a pointer to it's own right subtree
 
 # Searching
 A BST can be searched iteratively or recursively
 
+The pseudo code for searching a BST is as follows:
+
+``` c++
+// point to root of bst
+Node* nodePtr = root;
+// while nodeptr isn't null
+while(nodePtr){
+    // key found, return node ptr
+    if(key==nodePtr->key)return nodePtr;
+    // key greater, search right
+    if(key>nodePtr->key)nodePtr=nodePtr->right;
+    // key less, search left
+    else nodePtr=nodePtr->left;
+}
+return nodePtr;
+```
+# Inserting
 # Deleting
