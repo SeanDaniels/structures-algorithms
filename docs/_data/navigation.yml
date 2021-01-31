@@ -1,4 +1,9 @@
-# main links
-topics:
-  - title: "Binary Search"
-    url: /topics/binary-search/
+main:
+  - title: "Posts"
+    url: /posts/
+  - title: "Categories"
+    url: /categories/
+  - title: "Tags"
+    url: /tags/
+  - title: "About"
+    url: /about/
