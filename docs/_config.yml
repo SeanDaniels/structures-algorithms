@@ -27,8 +27,9 @@ baseurl: "/docs" # the subpath of your site, e.g. /blog
 url: "http://seandaniels.github.io/structures-algorithms" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
-theme: minimal-mistakes-jekyll
+remote_theme: "mmistakes/minimal-mistakes@4.21.0"
 plugins:
+  - jekyll-include-cache
   - jekyll-feed
 
 collections:
