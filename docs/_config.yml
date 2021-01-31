@@ -23,8 +23,8 @@ email: sdaniel5@ncsu.edu
 author: Sean Daniels
 description: >- # this means to ignore newlines until "baseurl:"
   This site covers the work I have done to gain a deeper understanding of common cs algorithms and data structures
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/docs" # the subpath of your site, e.g. /blog
+url: "http://seandaniels.github.io/structures-algorithms" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 theme: minimal-mistakes-jekyll
