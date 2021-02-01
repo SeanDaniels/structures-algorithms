@@ -78,3 +78,32 @@ While removing a node from a BST, the underlying structure of the BST must be re
 
 In order to remove a node from a BST
 Removing a node from a BST 
+
+# Hashing
+At it's highest level, hashing is the act of associating some value into some other value. Hashing as a concept occurs in the realm of cryptography, with a heavy focus on developing secure and efficient functions for the association of data with a particular key. That topic is outside of the scope of this project. Here, I will focus on the basics of hashing in order to implement a table. 
+
+An effective hashing function accomplishes meets the following parameters:
+- Creates a reasonably unique key for each element
+- Computes quickly
+
+To be considered a perfect hash function, the function must generate a unique key for each element of the data set being hashed.
+
+Let's examine a very basic hashing function. Let's say we have a known number of integer elements in a set of data. We could generate a key for each element by doing something like:
+
+``` c++
+int key = value % numberOfElements;
+```
+If the data set contained 15 elements, the following values would produce the following keys:
+
+| Value | Key |
+|:-----:|:---:|
+| 10    | 5   |
+| 16    | 1   |
+| 12    | 3   |
+
+Through the process of hashing, a value is associated with some key.
+
+## Add complexity of hash tables
+
+# Hash Table
+Hashing is used as a building block for the hash table data structure. Most programming languages include libraries that build data structures that are, at their core, hash tables. In python, we can create dictionaries. In c++, we can use unordered maps. 
