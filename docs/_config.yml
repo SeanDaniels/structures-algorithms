@@ -16,12 +16,11 @@
 title: Structures and Algorithms
 email: sdaniel5@ncsu.edu
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-twitter_username: username
-github_username: username
+  This site covers the work I have done to gain a deeper understanding of common cs algorithms and data structures
+github_username: SeanDaniels
 minimal_mistakes_skin: default
+baseurl: "/structures-algorithms" # the subpath of your site, e.g. /blog
+url: "https://seandaniels.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 search: true
 
 # Build settings
@@ -58,7 +57,7 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "First Lastname"
+  name   : "Sean Daniels"
   avatar : "/assets/images/bio-photo.jpg"
   bio    : "My awesome biography constrained to a sentence or two goes here."
   links:
