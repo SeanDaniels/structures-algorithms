@@ -4,7 +4,7 @@ permalink: /topics/hashing/
 layout: single
 toc: true
 ---
-At it's highest level, hashing is the act of associating some value into some other value. Hashing as a concept occurs in the realm of cryptography, with a heavy focus on developing secure and efficient functions for the association of data with a particular key. That topic is outside of the scope of this project. Here, I will focus on the basics of hashing in order to implement a table. 
+At it's highest level, hashing is the act of associating some value into some other value. Hashing as a concept occurs in the realm of cryptography, with a heavy focus on developing secure and efficient functions for the association of data with a particular key. That topic is outside of the scope of this project. Here, I will focus on the basics of hashing in order to implement a hash table. 
 
 An effective hashing function accomplishes meets the following parameters:
 - Creates a reasonably unique key for each element
@@ -46,6 +46,8 @@ For example, if the table had 1000 slots, the mid square function would return t
 Got stuck here thinking about how to extract three middle digits from an integer without creating a vector or string
 
 # Hash Table
+
+![Hash Table](/structures-algorithms/assets/images/hash-table.jpg)
 Hashing is used as a building block for the hash table data structure. A hash table consists of elements indexed by their key. This has an advantage over a simple array in terms of search time. Since the location of the element within the structure is dependent on the element, searching does not need to be iterative or binary. In a perfect hash table, an element can be found in constant time. 
 
 A hash table is built by allocating a fixed amount of contiguous memory, just like an array. When adding elements to the array, a hash function generates a key for the value, and the value is inserted into the allocated space at the index provided by the key. 
@@ -74,3 +76,53 @@ for example, a hash table with 75 occupied entries and 100 available entries has
 | Delete    | O(1)    | O(n)       |
 
 
+## Inserting 
+
+Inserting elements into a hash table is handled in two steps:
+
+- Generating a key for the element
+- Finding a location in the table to place to the element
+
+If the hash table does not support collisions, attempting to insert at an index that contains data will result in returning a failure code. 
+
+Here is a snippet for a table insertion, with no collision policy. For this example, I have initialized all the elements in the table with a value of -1, indicating open slots. 
+
+``` c++
+bool insert(int value){
+int key = hashFunc(value);
+if(table[key]==-1){
+    table[key] = value;
+    return true;
+}
+return false;
+}
+```
+
+If the table is configured for a probing policy, the insertion function would not return false until all slots were confirmed full. 
+
+Here is a snippet with probing:
+
+``` c++
+bool insertCheck(int value){
+    int key, checkIndex;
+    key = hashFunc(value);
+    if(table[key]==-1){
+        table[key] = value;
+        return true;
+    }
+    else{
+        checkIndex = (key+1)%numberOfSlots;
+        while(checkIndex!=key){
+            if(table[chainIndex]==-1){
+               table[chainIndex] = value; 
+               return true;
+            }
+            chainIndex=(chainIndex+1)%numberOfSlots;
+        }
+    }
+    return false;
+}
+```
+## Searching
+
+Locating an element in hash table again involves generating the key for the element, and checking the table at the generated key's index. 
