@@ -1,0 +1,21 @@
+I"G<h1 id="binary-search-tree">Binary Search Tree</h1>
+<p>A binary search tree (BST) is a data structure consisting of a single ‘root’ node and any number of internal nodes. Each node contains a pointer to a left subtree and a pointer to right subtree. A BST follows the property that the key value of each node of the left subtree is less than the key value of the root node, and the key value of each node of the right subtree is greater than the key value of the root node. Because of this property, each comparison allows approximately half of the remaining tree to be skipped when searching for a key value.</p>
+
+<p>A BST allows binary search for looking up, adding, and removing items</p>
+
+<h1 id="time-complexity-in-big-o-notation">Time Complexity in Big O Notation</h1>
+<p>| Algorithm | Average  | Worst Case |
+|:———-|:———|:———–|
+| Space     | O(n)     | O(n)       |
+| Search    | O(log n) | O(n)       |
+| Insert    | O(log n) | O(n)       |
+| Delete    | O(log n) | O(n)       |</p>
+
+<h1 id="what-is-a-node">What is a ‘node’</h1>
+<p>At the most basic level, a node is structure that contains a key value and a pointer to it’s own left subtree and a pointer to it’s own right subtree</p>
+
+<h1 id="searching">Searching</h1>
+<p>A BST can be searched iteratively or recursively</p>
+
+<h1 id="deleting">Deleting</h1>
+:ET
