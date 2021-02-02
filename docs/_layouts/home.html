@@ -3,7 +3,7 @@ layout: archive
 ---
 
 {{ content }}
-
+{% if site.show_footer == true %}
 <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Old Posts" }}</h3>
 
 {% if paginator %}
@@ -18,5 +18,5 @@ layout: archive
     {% include archive-single.html type=entries_layout %}
     {% endfor %}
 </div>
-
+{% endif %}
 {% include paginator.html %}

@@ -12,3 +12,17 @@ This site is dedicated to the work I have done in the pursuit of a deeper unders
 
 To this end, each section of this site will be dedicated to an overview of the particular algorithm, and then a description (with code) of a data structure that implements or utilized the algorithm.
 
+The following topics will be covered:
+- Searching
+- Sorting
+- Dynamic Programming
+
+The following data structures will be examined:
+
+- Trees
+- Lists
+- Queues
+- Stacks
+- Hash Tables
+- Graphs
+- Windows
