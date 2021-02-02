@@ -8,7 +8,7 @@ title: Welcome
 show_footer: false
 ---
 
-[Shrugging Man](/assets/images/old-shrug.jpg)
+![Shrugging Man](/assets/images/old-shrug.jpg)
 
 This site is dedicated to the work I have done in the pursuit of a deeper understanding of common computer science algorithms and the data structures. 
 
