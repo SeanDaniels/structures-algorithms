@@ -12,10 +12,13 @@ int main() {
         if (a.insert(tempValue))
           successfulInsertions++;
     }
-    cout << "Table size: " << a.tableSize << endl;
+    /* Print table information */
+    cout << "Table size: " << a.occupiedSlots << endl;
     cout << "Attempted insertions: " << attemptedInsertions << endl;
     cout << "Successful insertions: " << successfulInsertions << endl;
-
+    /* Print table contents */
+    a.printTable();
+    /* Search through hash table for inserted values */
     for(int i = 0; i < TABLE_SIZE; i++){
         cout << "Searching for value " << tableValue[i] << endl;
         tempValue = a.getElement(tableValue[i]);
@@ -25,6 +28,5 @@ int main() {
         else
             cout << "Value not found in table" << endl;
     }
-
     return 0;
 }

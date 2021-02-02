@@ -3,31 +3,27 @@
 #include <iostream>
 #include <cstdlib>
 #include <ostream>
+#include <cmath>
 
 class HashTable{
 public:
-    int tableSize;
+    int numberOfSlots, occupiedSlots = 0;
     int* table;
     HashTable(int size){
-        this->tableSize = size;
+        this->numberOfSlots = size;
         this->table = new int[size];
-        for (int i = 0; i < tableSize; i++) {
+        for (int i = 0; i < numberOfSlots; i++) {
           table[i] = -1;
         }
     }
-    void printTable(){
-        std::cout << "Printing table\n";
-        for (int i = 0; i < tableSize; i++) {
-            std::cout << "Key: " << i << std::endl;
-            if(table[i]==-1)
-                std::cout << "EMPTY\n";
-            else std::cout << table[i] << std::endl;
-
-        }
-    }
+    void printTable();
     bool insert(int value);
     int hashFunc(int value);
     int getElement(int value);
+    double getMiddleDigits(double value);
+    double getLoadFactor() {
+      return double(occupiedSlots) / double(numberOfSlots);
+    }
 };
 
 #endif // __HASHTABLE_H_

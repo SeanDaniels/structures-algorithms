@@ -12,7 +12,7 @@ An effective hashing function accomplishes meets the following parameters:
 
 To be considered a perfect hash function, the function must generate a unique key for each element of the data set being hashed.
 
-Let's some very basic hash functions. 
+Let's look at some basic hash functions. 
 
 ## Division Method
 
