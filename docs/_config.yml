@@ -19,9 +19,10 @@ description: >- # this means to ignore newlines until "baseurl:"
   This site covers the work I have done to gain a deeper understanding of common cs algorithms and data structures
 github_username: SeanDaniels
 minimal_mistakes_skin: default
-baseurl: "/structures-algorithms" # the subpath of your site, e.g. /blog
-url: "https://seandaniels.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" #"/structures-algorithms" # the subpath of your site, e.g. /blog
+url: "" #"https://seandaniels.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 search: true
+show_footer: false
 
 # Build settings
 markdown: kramdown
@@ -34,7 +35,12 @@ timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 include:
   - _pages
+  - _topics
 
+collections:
+  topics:
+    output: true
+    permalink: /:collection/:path/
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
@@ -75,16 +81,16 @@ author:
       url: "https://instagram.com/"
 
 footer:
-  links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+  # links:
+  #   - label: "Twitter"
+  #     icon: "fab fa-fw fa-twitter-square"
+  #     url: "https://twitter.com/"
+  #   - label: "GitHub"
+  #     icon: "fab fa-fw fa-github"
+  #     url: "https://github.com/"
+  #   - label: "Instagram"
+  #     icon: "fab fa-fw fa-instagram"
+  #     url: "https://instagram.com/"
 
 defaults:
   # _posts
@@ -93,18 +99,30 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       read_time: true
       comments: true
       share: true
-      related: true
+      related: false
   # _pages
   - scope:
       path: "_pages"
       type: pages
     values:
       layout: single
-      author_profile: true
+      author_profile: false
+  # _topics
+  - scope:
+      path: "_topics"
+      type: docs
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comments: false
+      sidebar:
+        nav: "topics"
 
 category_archive:
   type: liquid
