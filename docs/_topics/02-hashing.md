@@ -48,6 +48,7 @@ Got stuck here thinking about how to extract three middle digits from an integer
 # Hash Table
 
 ![Hash Table](/structures-algorithms/assets/images/hash-table.jpg)
+
 Hashing is used as a building block for the hash table data structure. A hash table consists of elements indexed by their key. This has an advantage over a simple array in terms of search time. Since the location of the element within the structure is dependent on the element, searching does not need to be iterative or binary. In a perfect hash table, an element can be found in constant time. 
 
 A hash table is built by allocating a fixed amount of contiguous memory, just like an array. When adding elements to the array, a hash function generates a key for the value, and the value is inserted into the allocated space at the index provided by the key. 
