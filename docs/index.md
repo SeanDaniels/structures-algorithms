@@ -8,7 +8,6 @@ sidebar:
 title: Welcome
 show_footer: false
 ---
-![Old-Shrug](/assets/images/old-shrug.jpg)
 This site is dedicated to the work I have done in the pursuit of a deeper understanding of common computer science algorithms and the data structures. 
 
 To this end, each section of this site will be dedicated to an overview of the particular algorithm, and then a description (with code) of a data structure that implements or utilized the algorithm.
