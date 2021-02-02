@@ -19,7 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   This site covers the work I have done to gain a deeper understanding of common cs algorithms and data structures
 github_username: SeanDaniels
 minimal_mistakes_skin: default
-baseurl: "/structures-algorithms/docs" # the subpath of your site, e.g. /blog "" #
+baseurl: "/structures-algorithms" # the subpath of your site, e.g. /blog "" #
 url: "https://seandaniels.github.io" # the base hostname & protocol for your site, e.g. http://example.com  "" #
 search: true
 show_footer: false
