@@ -9,8 +9,8 @@ One method of searching through a data structure, such as an array, is iterate t
 In some scenarios, it is wasteful to visit every element of a data structure to locate a particular element. A binary search removes some of this overhead by halving it's search range until the element is located. A binary search requires the structure being searched is sorted.
 
 # Binary Search Tree
-![Binary Search Tree](/assets/images/bst.jpg)
 
+![Binary Search Tree](../assets/images/bst.jpg)
 
 A binary search tree (BST) is a data structure consisting of a single 'root' node and any number of internal nodes. Each node contains a pointer to a left subtree and a pointer to right subtree. A BST follows the property that the key value of each node of the left subtree is less than the key value of the root node, and the key value of each node of the right subtree is greater than the key value of the root node. Because of this property, each comparison allows approximately half of the remaining tree to be skipped when searching for a key value.
 
