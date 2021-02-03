@@ -69,6 +69,7 @@ load factor = \frac{o}{a}
 
 for example, a hash table with 75 occupied entries and 100 available entries has a load factor of .75
 
+![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
 
 ## Time Complexity of Hash Tables
 
