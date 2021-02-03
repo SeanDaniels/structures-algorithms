@@ -63,13 +63,12 @@ If it is known that the allocated memory is greater than the required memory for
 Probing handles a collision by iterating through the indices of the allocated memory
 
 ## Load Factor
-The load factor (\alpha) of a hash table is the ratio of the number of occupied slots and the number of available slots
+The load factor of a hash table is the ratio of the number of occupied slots 'o' and the number of available slots 'a'
 
-load factor = \frac{o}{a}
+load factor = o/a
 
 for example, a hash table with 75 occupied entries and 100 available entries has a load factor of .75
 
-![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
 
 ## Time Complexity of Hash Tables
 
