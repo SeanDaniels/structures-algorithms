@@ -11,7 +11,6 @@ int HashTable::hashFunc(int value){
 bool HashTable::insert(int value){
     int chainIndex;
     int key = hashFunc(value);
-
     #ifdef VERBOSE
     cout << "Attempting to insert " << value << " into table\n";
     cout << "Hash function generated key " <<  key << endl;
