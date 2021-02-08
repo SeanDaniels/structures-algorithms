@@ -8,7 +8,7 @@ toc: true
 <br/><br/>
 At it's highest level, hashing is the act of associating some value into some other value. Hashing as a concept occurs in the realm of cryptography, with a heavy focus on developing secure and efficient functions for the association of data with a particular key. That topic is outside of the scope of this project. Here, I will focus on the basics of hashing in order to implement a hash table. 
 
-An effective hashing function accomplishes meets the following parameters:
+An effective hashing function has the following parameters:
 - Creates a reasonably unique key for each element
 - Computes quickly
 
