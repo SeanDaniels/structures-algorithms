@@ -1,3 +1,9 @@
+---
+title: "Tries"
+permalink: /topics/tries/
+layout: single
+toc: true
+---
 A trie, also refereed to as a *digital tree* or *prefix tree*, is a search tree used for located specific keys from within a set. Keys are usually strings, and links between nodes are defined/referenced by single characters.
 
 Nodes in a trie do not store a key value. Trie node's are defined by their position with the structure.

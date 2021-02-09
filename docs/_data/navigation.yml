@@ -13,3 +13,5 @@ topics:
     url: /topics/binary-search
   - title: "Hashing"
     url: /topics/hashing
+  - title: "Tries"
+    url: /topics/tries
