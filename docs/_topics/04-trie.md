@@ -7,15 +7,15 @@ toc: true
 
 ![Example Trie](/structures-algorithms/assets/images/trie.jpg)
 <br/><br/>
-A trie, also refereed to as a *digital tree* or *prefix tree*, is a search tree used for located specific keys from within a set. Keys are usually strings, and links between nodes are defined/referenced by single characters.
+A trie, also refered to as a digital tree or prefix tree, is a search tree used for locating specific keys from within a set. Keys are usually strings, and links between nodes are defined/referenced by single characters.
 
 Nodes in a trie do not store a key value. Trie node's are defined by their position with the structure.
 
 The first structure I covered was a binary search tree. In that structure, a node contained two pointers. My understanding of a trie is that it can be built as an n-ary tree, meaning that each node can point to n child nodes. 
 
 Typical trie node's have two primary components:
-- Children
-- A leaf node marker
+- Some structure containing pointers to the node's children
+- A marker designating node as leaf
 
 A node's children are stored as pointers in an additional data structure. The examples that I have found so far use a fixed sized array, with a lay out looking something like this:
 
@@ -30,6 +30,13 @@ TrieNode* children[n];
 bool isLeaf;
 };
 ```
+
+# Initial Thoughts
+
+The idea of storing a vector or array of pointers seems like a bad one. The most common implementation I've found used a pointer for each letter of the alphabet, for each node. A character pointer is four bytes (I think), so each node requires 4*26 bytes of memory. That seems like a lot. Ten nodes would require a kilobyte. 
+
+That seems wrong
+
 # An Example Use Case
 
 What immediately comes to my mind when learning about tries is a dictionary. When I think about an entry in the dictionary, I think about it's position relative to the entirety of the dictionary. I think that's why most examples use an example with strings as the entry, and characters as the positional references. The prefixing that takes place in a dictionary is intuitive to me, so I am going to use that format. 
