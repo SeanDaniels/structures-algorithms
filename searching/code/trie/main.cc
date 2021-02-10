@@ -5,12 +5,13 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
     Trie myTree;
-    myTree.insertTrie("Ted");
-    myTree.printTree();
-    myTree.insertTrie("Hi");
-    myTree.printTree();
-    myTree.insertTrie("High");
-    myTree.printTree();
-    cout << "Number of entries in root vector: " << myTree.root->vectorOfNodePointers.size() << endl;
+    TrieNode* tmp;
+    string foo = "foo";
+    myTree.insert(foo);
+    if(myTree.searchTrie(foo)) cout << "Found" << endl;
+    else cout << "Not Found" << endl;
+
+    myTree.insert("Bar");
+    myTree.insert("Baz");
     return 0;
 }

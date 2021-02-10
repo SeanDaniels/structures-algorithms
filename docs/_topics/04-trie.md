@@ -35,11 +35,58 @@ bool isLeaf;
 
 The idea of storing a vector or array of pointers seems like a bad one. The most common implementation I've found used a pointer for each letter of the alphabet, for each node. A character pointer is four bytes (I think), so each node requires 4*26 bytes of memory. That seems like a lot. Ten nodes would require a kilobyte. 
 
-That seems wrong
+That seems like a lot of over head for a data structure. 
+
+I also think that as nodes are added to the trie, the number of child nodes decreases. For example, it's reasonable to think that the root node points to the most other nodes, but a node at the lowest level of the trie points to no other nodes. I wonder if there is a way to use vectors or some other dynamic structure to hold the pointers, and save some space overhead.
+
+I am going to pause here and look that up
+
+Here's what I got: 
+running the snippet
+```c++
+vector<char> tmp;
+cout << sizeof(tmp) << endl;
+```
+returns 24.
+
+I don't really know how sizing works. Looking at the following struct
+```c++
+struct ObjPointObj{
+    char eos;
+    ObjPointObj *collection;
+};
+
+int main(){
+    std::cout << sizeof(ObjPointObj) << std::endl;
+}
+
+```
+
+This size returned is 16. A single pointer is 8 bytes, a char is 1 byte, so I'm not sure how 16 can be the size here. Shouldn't it be 9??
+
+If I change the ObjPointObj struct to point to an array of pointers:
+
+```c++
+struct ObjPointObj{
+    char eos;
+    ObjPointObj *collection[2];
+};
+
+```
+The structure size grows by 8 bytes, which makes sense. I'm just not sure why the jump from 1 byte to 16 bytes happens.
+
+If I create the structure with an empty vector of pointers:
+```c++
+struct ObjVectObj{
+    char eos;
+    vector<ObjVectObj*> collection;
+};
+```
+The size of the structure is 32 bytes.
 
 # An Example Use Case
 
-What immediately comes to my mind when learning about tries is a dictionary. When I think about an entry in the dictionary, I think about it's position relative to the entirety of the dictionary. I think that's why most examples use an example with strings as the entry, and characters as the positional references. The prefixing that takes place in a dictionary is intuitive to me, so I am going to use that format. 
+What immediately comes to my mind when learning about tries is a dictionary. When I think about an entry in the dictionary, I think about it's position relative to the entirety of the dictionary. I think that's why most examples use an example with strings as the entry, and characters as the positional references. The prefixing that takes place in a dictionary is intuitive to me, so I am going to use that as a template. 
 
 Let's say I wanted to store a bunch of words in some program, I'm going to use a trie, and the first word I was going to add was 'ark'. Because the trie is empty, I am going to be adding three nodes, a node representing each letter, pointing to the next letter in the word, until the last letter, which I will flag as the end of a word. Here's a quick representation:
 
@@ -63,6 +110,114 @@ If I were to add the word 'bark' to the structure, four nodes would be added. Th
 
 I have been building the example structures with c++ being the programming language. I hope that it's clear that the underlying logic and algorithms for these structures are not linked to any particular language. For the sake of continuity, I am going to again use c++ for the trie structure. 
 
+Continuing with the example above, I'll build a trie that processes strings. The characters of the string will be from the english alphabet, meaning each node can potentially point to 26 other nodes.
+## Class
+I'll be doing this a class object, so my trie node is defined as:
+```c++
+class TrieNode {
+  public:
+  // actually containing data, for example purposes
+    char data;
+    // designator for end of a string
+    bool isLeaf;
+    // container for node's pointers
+    TrieNode* children[NODECOUNT];
+    // initializing the pointers
+    TrieNode(char nodeData){
+        this->data = nodeData;
+        this->isLeaf = false;
+        for(int i = 0; i < NODECOUNT; i++){
+          this->children[i] = NULL;
+        }
+    }
+};
+```
+
+## Insertion
+When a string is added to the trie, the characters of the string are used to traverse the content of the trie.
+
+The root node pointer structure is checked for the first letter of the string. If present, the function moves to next letter of the string, and points to the node indicated by the root node's pointer. This processed is looped for each letter of the string.
+
+```c++
+void Trie::insert(std::string thisString){
+    // start at root
+    TrieNode* curr = this->root;
+    // index for checking current node's pointer array
+    int idx;
+    for(int i = 0; i < thisString.size(); i++){
+    // set index to integer form of character
+        idx = thisString[i] - 48;
+        // if node does not exist, creat new node, move to new node
+        if(!curr->children[idx]){
+            curr->children[idx] = new TrieNode(thisString[i]);
+            curr = curr->children[idx];
+        }
+    }
+    // node associated with last letter of string marked as a leaf node
+    curr->isLeaf = true;
+}
+```
+
+## Searching
+
+Searching for a given string in the structure is similar:
+
+```c++
+bool Trie::searchTrie(std::string thisString){
+    TrieNode* curr = this->root;
+    int idx;
+    for(int i = 0; i < thisString.size(); i++){
+        idx = thisString[i] - 48;
+        if(!curr->children[idx])
+            return false;
+        else curr = curr->children[idx];
+    }
+    return true;
+}
+```
+Starting with the root node and the first character of the string, nodes are checked for the string contents. If at any point in the search, the current node doesn't contain a pointer to the next letter, the search returns as false.
+
+It the trie contained 'arc' and was searched for 'ark':
+root -> 'a' (exists) ->  'r' (exists) -> 'k' (doesn't exist) fail return
+
+## Deletion
+
+Deletion, which is handled recursively, can be a little tricky for tries. Here's the process:
+- Start at root, first character of string
+- Check if depth is equal to length of string
+- If depth is equal to string, remove node, move back up through trie
+- If not move to next character in string
+
+The depth parameter can only be incremented if the character is found in child pointer arrays. 
+
+Here is the code:
+```c++
+TrieNode* Trie::remove(TrieNode *currentNode, std::string thisString, int currentDepth){
+    if(currentNode==NULL)return NULL;
+
+    // if position in tree matches length of string
+    if(currentDepth==thisString.size()){
+        if(currentNode->isLeaf){
+            currentNode->isLeaf = false;
+        }
+        if(emptyNode(currentNode)){
+            delete(currentNode);
+            currentNode = NULL;
+        }
+    return currentNode;
+    }
+
+    int idx = thisString[currentDepth] - 48;
+    currentNode->children[idx] = remove(currentNode->children[idx], thisString, currentDepth++);
+    if(emptyNode(currentNode)&&currentNode->isLeaf==false){
+        delete(currentNode);
+        currentNode = NULL;
+    }
+    return currentNode;
+}
+```
+
+# Other Thoughts
 Like I mentioned above, most example implementations that I have found use a fixed sized array for holding a node's pointers, the ones that point to the node's children. I don't like that approach, so I have decided to use a vector. Vectors are pretty crazy, and I wouldn't begin to try and teach someone else the intricaces of them. What I will say is that they are extendible, which means that I don't have to use a fixed size when creating my trie. 
 
 The downside here is trying to figure the implementation of a trie with vectors. With a fix sized array, all pointers are added to all node pointer arrays at the same position. For example, if a trie only contained contained one entry, the word 'ark', and the trie processed strings, meaning that when a string was added to the trie, traversing the nodes of the trie could produce the string. 

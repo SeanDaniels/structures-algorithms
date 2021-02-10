@@ -6,3 +6,5 @@ tmp/
 *.o
 # bst example
 /binary-search-tree/code/example
+# ccls-cache
+/.ccls-cache
