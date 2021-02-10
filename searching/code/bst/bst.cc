@@ -137,7 +137,7 @@ void BST::remove(int key) {
           if(!noChildren(tmp, parent)){
               // check two child
               if(!oneChild(tmp, parent)){
-                  noChildren(tmp, parent);
+                  twoChildren(tmp, parent);
               }
           }
           delete tmp;
