@@ -49,7 +49,10 @@ cout << sizeof(tmp) << endl;
 ```
 returns 24.
 
-I don't really know how sizing works. Looking at the following struct
+After running some tests, I realized I was confused about the way sizing and memory allocation works. 
+
+I investigated the following structure:
+
 ```c++
 struct ObjPointObj{
     char eos;
@@ -62,27 +65,8 @@ int main(){
 
 ```
 
-This size returned is 16. A single pointer is 8 bytes, a char is 1 byte, so I'm not sure how 16 can be the size here. Shouldn't it be 9??
+The size of 'ObjPointObj' is 16 bytes. A single pointer (on my system) is 8 bytes, and a char variable is 1 byte. It turns out that the compiler I am using allocates space with respect to byte alignment.
 
-If I change the ObjPointObj struct to point to an array of pointers:
-
-```c++
-struct ObjPointObj{
-    char eos;
-    ObjPointObj *collection[2];
-};
-
-```
-The structure size grows by 8 bytes, which makes sense. I'm just not sure why the jump from 1 byte to 16 bytes happens.
-
-If I create the structure with an empty vector of pointers:
-```c++
-struct ObjVectObj{
-    char eos;
-    vector<ObjVectObj*> collection;
-};
-```
-The size of the structure is 32 bytes.
 
 # An Example Use Case
 
