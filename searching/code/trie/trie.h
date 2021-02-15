@@ -3,7 +3,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#define NODE_COUNT  26
+
+#define NODE_COUNT  256
 
 class TrieNode {
   public:

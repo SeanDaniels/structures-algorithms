@@ -20,6 +20,7 @@ void Trie::insert(std::string thisString){
         }
         curr = curr->children[idx];
     }
+    // need to change
     curr->isLeaf = true;
 }
 
@@ -34,6 +35,7 @@ bool Trie::searchTrie(std::string thisString){
     }
     return true;
 }
+
 bool Trie::emptyNode(TrieNode *thisNode){
     for(int i = 0; i < NODE_COUNT; i++){
         if(thisNode->children[i]!=NULL){
