@@ -15,3 +15,5 @@ topics:
     url: /topics/hashing
   - title: "Tries"
     url: /topics/tries
+  - title: "Extendible Hash Table"
+    url: /topics/extendible-hashing

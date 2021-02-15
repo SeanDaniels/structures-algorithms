@@ -1,3 +1,9 @@
+---
+title: "Extendible Hash Table"
+permalink: /topics/extendible-hashing/
+layout: single
+toc: true
+---
 Extendable hashing is a flexible, dynamic hashing system.
 
 An extendible hash table (EHT) has two components:
