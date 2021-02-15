@@ -1,20 +1,19 @@
 #ifndef __EHT_H_
 #define __EHT_H_
 #include <vector>
+#include <iostream>
 
 // container for inserted elements
 class Bucket{
     public:
         std::vector<int> values;
-        Bucket();
-        ~Bucket();
 };
 
 // contains pointers to different buckets
 class Directory{
     public:
         int dirId;
-        std::vector<Bucket*> buckets;
+        Bucket* targetBucket;
         Directory(int idNumber){
             dirId = idNumber;
         }
@@ -24,8 +23,13 @@ class Directory{
 class EHT{
     public:
         int numberOfDirs;
+        int maskValue;
+        int overflowCount;
         std::vector<Directory*> directories;
         EHT();
+        ~EHT();
+        void insertElement(int element);
+        int hashFunc(int element);
 };
 
 

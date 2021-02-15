@@ -8,3 +8,4 @@ tmp/
 /binary-search-tree/code/example
 # ccls-cache
 /.ccls-cache
+build/
