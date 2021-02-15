@@ -52,7 +52,7 @@ while(nodePtr){
 return nodePtr;
 ```
 # Inserting
-Inserting a new node into a BST is accomplished with the following routined:
+Inserting a new node into a BST is accomplished with the following routine:
 - Create a new node
 - Locate appropriate position for new node
 - Point parent node to new node
@@ -80,6 +80,7 @@ else{
 In order to successfully remove a node from the BST, the node must be deleted and any pointers referencing the node must be updated. 
 
 While removing a node from a BST, the underlying structure of the BST must be retained. This may require updating the removed node's parents and children. This is summarized in the following 3 cases:
+
 - The removed node has no children
 - The removed node has either a left child or a right child (1 child)
 - The removed node has both a left child and a right child (2 children)
@@ -87,3 +88,100 @@ While removing a node from a BST, the underlying structure of the BST must be re
 
 In order to remove a node from a BST
 Removing a node from a BST 
+
+
+## No Children
+
+The most straight forward case. The node's parent's pointers need to be disassociated from the node being deleted.
+
+```c++
+bool BST::noChildren(Node *node, Node *parent) {
+  if (node->left == nullptr && node->right == nullptr) {
+    // node being removed is the root of the BST
+    if (parent == nullptr) {
+      root = nullptr;
+    }
+    // node being removed is a left child
+    if (parent->left == node) {
+      parent->left = nullptr;
+    }
+    // node being removed is a right child
+    else
+      parent->right = nullptr;
+    return true;
+  }
+  // node has atleast one child
+  return false;
+}
+```
+
+
+## One Child
+
+When deleting a node that has one child, the parent's pointer needs to be updated to point to what child is currently pointing to. 
+
+```c++
+bool BST::oneChild(Node *node, Node *parent){
+    // node being removed has right child
+    if (node->right!=nullptr && node->left==nullptr) {
+        // node being removed is root
+        if(parent==nullptr){
+            root=node->right;
+        }
+        // node being removed is parent right child
+        else if(parent->right==node){
+            parent->right = node->right;
+        }
+        // node being removed is parents left child
+        else
+            parent->left=node->right;
+        return true;
+            }
+    // node being removed has left child
+    else if (node->right==nullptr && node->left!=nullptr){
+        // node being removed is root
+        if(parent==nullptr)root=node->left;
+        // node being removed is parents right child
+        else if(parent->right==node)parent->right=node->left;
+        // node being removed is parents left child
+        else parent->left=node->left;
+        return true;
+    }
+
+    return false;
+}
+```
+
+## Two Children
+
+The third case can be confusing. The goal is to keep remain true the underlying structure a binary tree. 
+
+A common approach is to locate the smallest contained in the node's subtree. This node will be put where the current node is located, and it is referred to as the successor node.
+
+Locating the successor done by traversing the entirety of the node's left subtree. While moving down the subtree, a record must be kept of the previous node visited, the successor node's parent. 
+
+Once the lowest node is located, it is handled by the one of the above two functions (no children or two children). This node is going to be put where the node being deleted is presently located, so it must be deleted from it's current position. Finally, the successor is updated to point at the deleted node's children. 
+
+```c++
+void BST::twoChildren(Node *node, Node *parent){
+    Node* successor = node->right;
+    Node* prev = node;
+    // find the smallest key in this nodes left subtree
+    while(successor->left!=nullptr){
+        prev = successor;
+        successor = successor->left;
+    }
+    // check if lowest key node has no children or one child
+    if(!noChildren(successor, prev)){
+        oneChild(successor, prev);
+    }
+    successor->left = node->left;
+    successor->right = node->right;
+
+    if(parent==nullptr)root=successor;
+    else if(parent->right==node)parent->right = successor;
+    else parent->left = successor;
+    return;
+};
+```
+
