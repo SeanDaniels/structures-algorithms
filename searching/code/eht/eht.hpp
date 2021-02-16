@@ -13,6 +13,7 @@ class Bucket{
 class Directory{
     public:
         int dirId;
+        // each directory points to a single bucket, but multiple directories can point to the same bucket
         Bucket* targetBucket;
         Directory(int idNumber){
             dirId = idNumber;
@@ -22,7 +23,7 @@ class Directory{
 // contains pointers to different directories
 class EHT{
     public:
-        int numberOfDirs;
+        int globalDepth;
         int maskValue;
         int overflowCount;
         std::vector<Directory*> directories;
@@ -31,7 +32,7 @@ class EHT{
         void insertElement(int element);
         int hashFunc(int element);
         void splitBucket();
-        void splitDirectory();
+        void expandDirectory();
 };
 
 

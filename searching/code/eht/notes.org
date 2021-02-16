@@ -1,0 +1,8 @@
+#+TITLE: EHT notes
+* Bucket Splitting
+When local depth is less than global depth, only split bucket
+* Directory Splitting
+When local depth is equal to global depth, expand directories, and split buckets
+* Flow
+- Element inserted into table
+- If bucket has overflowed, split bucket, re hash elements in overflow buckets

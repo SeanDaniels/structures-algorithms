@@ -2,9 +2,9 @@
 #define DBG
 EHT::EHT(){
   overflowCount = 3;
-  numberOfDirs = 2;
+  globalDepth = 2;
   maskValue = 1;
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < globalDepth; i++) {
     // create new directory, init it with value 0 or 1
     Directory *newDirectory = new Directory(i);
     // create new bucket
@@ -17,7 +17,7 @@ EHT::EHT(){
 }
 
 EHT::~EHT(){
-  for(int i = 0; i < this->numberOfDirs; i++){
+  for(int i = 0; i < this->globalDepth; i++){
     delete(this->directories[i]->targetBucket);
     delete(this->directories[i]);
   }
@@ -31,6 +31,31 @@ int EHT::hashFunc(int element){
 #endif
   return key;
 
+}
+
+void EHT::expandDirectory() {
+#ifdef DBG
+  std::cout << "Expanding directory" << std::endl;
+#endif
+  // double the number of directories
+  int currentDepth = globalDepth;
+  int newDepth = currentDepth * 2;
+  int partner;
+  for (int i = currentDepth; i < newDepth; i++) {
+    // create new directory
+    Directory *newDirectory = new Directory(i);
+    partner = i & 1;
+#ifdef DBG
+    std::cout
+        << "New directory points to same bucket as existing directory at index "
+        << partner << std::endl;
+#endif
+    newDirectory->targetBucket = this->directories[partner]->targetBucket;
+  }
+  maskValue *= 2;
+#ifdef DBG
+  std::cout << "New mask value: " << maskValue << std::endl;
+#endif
 }
 
 void EHT::insertElement(int element){
