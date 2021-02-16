@@ -30,6 +30,8 @@ class EHT{
         ~EHT();
         void insertElement(int element);
         int hashFunc(int element);
+        void splitBucket();
+        void splitDirectory();
 };
 
 

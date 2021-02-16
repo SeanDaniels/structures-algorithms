@@ -38,6 +38,10 @@ void EHT::insertElement(int element){
   Directory* targetDirectory = this->directories[dirIndex];
   Bucket* targetBucket = targetDirectory->targetBucket;
   std::vector<int> bucketVector = targetBucket->values;
+  size_t elementCount = bucketVector.size();
+#ifdef DBG
+    std::cout << "Number of elements in this bucket: " << elementCount << std::endl;
+#endif
   if(bucketVector.size()>this->overflowCount){
 #ifdef DBG
     std::cout << "Bucket overflow " << std::endl;
