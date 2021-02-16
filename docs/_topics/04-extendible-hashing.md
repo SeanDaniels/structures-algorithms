@@ -27,3 +27,9 @@ This example will use some number of LSBs of the integer being added to the EHT 
 
 The number of LSB's used is equivalent to the number of bits needed to index all of the directories. For example, if there are two directories, a single bit can index all of the directories. If, however, there are four directories, two bits will be needed to index them. 
 
+## Were I'm Confused
+When doing a directory split, how should the new directory be updated to point at the correct bucket. And what order should that update take place? 
+
+When updating, a new directory is created, but we don't need to add a bucket for each directory. So the directories that get added should point to existing buckets.
+
+After creating the new directories, the content of the overflowing bucket needs to be rehashed. At what point is a new bucket created, and what is the logic for determining that condition?

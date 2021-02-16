@@ -14,6 +14,7 @@ class Directory{
     public:
         int dirId;
         // each directory points to a single bucket, but multiple directories can point to the same bucket
+        // how to mark if this bucket is being pointed to by multiple directories
         Bucket* targetBucket;
         Directory(int idNumber){
             dirId = idNumber;
@@ -31,7 +32,7 @@ class EHT{
         ~EHT();
         void insertElement(int element);
         int hashFunc(int element);
-        void splitBucket();
+        void splitBucket(Bucket* thisBucket);
         void expandDirectory();
 };
 

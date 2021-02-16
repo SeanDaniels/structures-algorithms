@@ -1,5 +1,6 @@
 #include "eht.hpp"
 #define DBG
+
 EHT::EHT(){
   overflowCount = 3;
   globalDepth = 2;
@@ -52,10 +53,33 @@ void EHT::expandDirectory() {
 #endif
     newDirectory->targetBucket = this->directories[partner]->targetBucket;
   }
-  maskValue *= 2;
+  // update mask value
+  maskValue = (maskValue<<1)+1;
 #ifdef DBG
   std::cout << "New mask value: " << maskValue << std::endl;
 #endif
+  globalDepth = newDepth;
+}
+
+void EHT::splitBucket(Bucket *thisBucket){
+#ifdef DBG
+  std::cout << "Splitting bucket" << std::endl;
+#endif
+  std::vector<int> tempHolder = thisBucket->values;
+#ifdef DBG
+  std::cout << "Content of holder before clear" << std::endl;
+  for(auto x : tempHolder){
+    std::cout << x << std::endl;
+  }
+#endif
+  thisBucket->values.clear();
+#ifdef DBG
+  std::cout << "Content of holder after clear " << std::endl;
+  for(auto x : tempHolder){
+    std::cout << x << std::endl;
+  }
+#endif
+
 }
 
 void EHT::insertElement(int element){
@@ -71,6 +95,11 @@ void EHT::insertElement(int element){
 #ifdef DBG
     std::cout << "Bucket overflow " << std::endl;
 #endif
+    bucketVector.push_back(element);
+    expandDirectory();
+    splitBucket(targetBucket);
   }
-  targetDirectory->targetBucket->values.push_back(element);
+  else{
+    targetDirectory->targetBucket->values.push_back(element);
+  }
 }
