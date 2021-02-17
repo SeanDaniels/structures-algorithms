@@ -15,6 +15,8 @@ class Directory{
         int dirId;
         // each directory points to a single bucket, but multiple directories can point to the same bucket
         // how to mark if this bucket is being pointed to by multiple directories
+        // I'm going to add a flag bit to indicate if the directory points to unique bucket
+        char uniqueBucket;
         Bucket* targetBucket;
         Directory(int idNumber){
             dirId = idNumber;
@@ -34,6 +36,8 @@ class EHT{
         int hashFunc(int element);
         void splitBucket(Bucket* thisBucket);
         void expandDirectory();
+        void printBucket(Bucket* thisBucket);
+        void printTable();
 };
 
 

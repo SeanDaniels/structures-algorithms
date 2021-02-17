@@ -9,5 +9,7 @@ int main(int argc, char *argv[]) {
     for(auto x : insertValues){
         extendibleTable.insertElement(x);
     }
+    cout << "--Final Table--" << endl;
+    extendibleTable.printTable();
     return 0;
 }
