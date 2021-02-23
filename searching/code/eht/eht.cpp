@@ -139,7 +139,7 @@ void EHT::insertElement(int element){
 
 void EHT::printBucket(Bucket *thisBucket){
   for(auto x : thisBucket->values){
-    std::cout << x << ", ";
+    printf("%X,", x);
   }
   std::cout << std::endl;
 }
