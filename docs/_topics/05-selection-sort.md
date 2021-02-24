@@ -13,6 +13,12 @@ Selection sort advantages:
 Selection sort disadvantages:
 - Inefficient on large lists
 
+| Selection Sort         | Comparisons | Swaps |
+|:----------------------:|:-----------:|-------|
+| Worst-case performance | O(n^2)      | O(n)  |
+| Best-case performance  | O(n^2)      | O(1)  |
+| Average performance    | O(n^2)      | O(n)  |
+
 ## How it works
 
 Selection sort works by treating the original list as two sub-lists. One sub-list contains the the original data, and one sub-list contains the sorted data. 
@@ -60,3 +66,10 @@ for(i = 0; i < arrayLength-1; i++){
 }
 ```
 
+## Advantage Versus Insertion Sort 
+
+Selection sort performs less swaps than insertion sort.
+
+## Disadvantage Versus Insertion Sort
+
+Selection sort performs a greater number of comparisons than insertion sort. Insertion sort usually performs better.
