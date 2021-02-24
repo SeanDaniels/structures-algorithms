@@ -54,4 +54,5 @@ Insertion sort performs less comparisons based on the 'sortedness' of the data.
 Insertion sort performs a greater number of swaps, so a greater number of memory writes. There are some scenarios where the designer may want to avoid this. For example, flash memory has a limited lifespan with respect to memory writes. 
 
 # Code
-{{ site.url }}/CMakeLists.txt
+[Link to code][1]
+[1]:{{ site.url }}/structures-algorithms/CMakeLists.txt
