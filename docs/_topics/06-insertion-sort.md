@@ -27,7 +27,12 @@ While values are found that are greater than the current element, the larger ele
 
 A common implementation consists of a while loop nested within a while loop. The outer loop moves forward through the elements, and the inner loop compares the current element with preceeding elements. Within the inner loop, if an element is found that is less than the current element, the values are swapped
 
+## Example 
+
+![Example Sort](/structures-algorithms/assets/images/insertion-sort.jpg)
+
 ## Pseudo Code
+
 ```c++
 while( checkIndex < arrLength){
     holdValue = values[checkIndex];
