@@ -36,6 +36,7 @@ The typical implementation of selection sort is a nested loop, which results in 
 The diagram below shows a single pass through a list
 
 ## Pseudo code
+
 ```c++
 int arrayLength = n;
 int values[arrayLength];

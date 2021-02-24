@@ -17,3 +17,5 @@ topics:
     url: /topics/tries
   - title: "Extendible Hash Table"
     url: /topics/extendible-hashing
+  - title: "Selection Sort"
+    url: /topics/selection-sort
