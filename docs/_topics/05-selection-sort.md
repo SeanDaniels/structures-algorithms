@@ -11,23 +11,45 @@ Selection sort advantages:
 - In some scenarios, has a performance advantage over more complicated algorithms
 
 Selection sort disadvantages:
-- Ineffecient on large lists
+- Inefficient on large lists
 
-Selection sort works by seperating a given list into two sublists. One sublist contains the the original data, and one sublist contains the sorted data. 
+Selection sort works by separating a given list into two sub-lists. One sub-list contains the the original data, and one sub-list contains the sorted data. 
 
-The sublist containing the sorted elements is populated by iterating through the unsorted list from a minimum index to the max index of list. The minimum index is updated on each pass through the unsorted list.
+The sub-list containing the sorted elements is populated by iterating through the unsorted list from a minimum index to the max index of list. The minimum index is updated on each pass through the unsorted list.
 
 Take the following list of integers as an example:
-100, 12, 3, 399, 2
+20, 12, 300, 3, 24
 
-The following table shows the sublists after each iteration
+The following table shows the sub-lists after each iteration
 
 | Unsorted             | Sorted               |
 |:--------------------:|:--------------------:|
-| (100, 12, 3, 399, 2) | ()                   |
-| (100, 12, 3, 399)    | (2)                  |
-| (100, 12, 399)       | (2, 3)               |
-| (100, 399)           | (2, 3, 12)           |
-| (399)                | (2, 3, 12, 100)      |
-| ()                   | (2, 3, 12, 100, 399) |
+| (20, 12, 300, 3, 24) | ()                   |
+| (20, 12, 300, 24)    | (3)                  |
+| (20, 300, 24)        | (3, 12)              |
+| (300, 24)            | (3, 12, 20)          |
+| (300)                | (3, 12, 20, 24)      |
+| ()                   | (3, 12, 20, 24, 300) |
+
+The typical implementation of selection sort is a nested loop, which results in O(n^2) time complexity. For each element in the list, the element is compared to the remaining elements in the list to determine the next lowest value. 
+
+The diagram below shows a single pass through a list
+
+## Pseudo code
+```c++
+int arrayLength = n;
+int values[arrayLength];
+int i, j, minIndex;
+for(i = 0; i < arrayLength-1; i++){
+    minIndex = i;
+    for(j = i+1; j < arrayLength; j++){
+        if(values[j]<values[minIndex]){
+            minIndex = j;
+        }
+    }
+    if(minIndex != i){
+        swap
+    }
+}
+```
 
