@@ -55,4 +55,4 @@ Insertion sort performs a greater number of swaps, so a greater number of memory
 
 # Code
 
-[Code Link]({{ site.url }}/docs/downloads/insertionSort.zip)
+[link](/structures-algorithms/downloads/insertionSort.zip)
