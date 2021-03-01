@@ -21,3 +21,5 @@ topics:
     url: /topics/selection-sort
   - title: "Insertion Sort"
     url: /topics/insertion-sort
+  - title: "Merge Sort"
+    url: /topics/merge-sort
