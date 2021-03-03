@@ -32,7 +32,7 @@ Merge sort operates on the principle that a list with a single element is consid
 
 The above example uses the following list: 5,2,1,3,4,6
 
-This list is passed as argument to a recursive split function. The psuedo code for the split function is as follows:
+This list is passed as an argument to a recursive split function. The psuedo code for the split function is as follows:
 
 ```c++
 void split(int a[], start, end, int b[]){
