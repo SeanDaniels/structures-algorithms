@@ -31,3 +31,6 @@ The number of comparisons per sublist is proportional to the number of elements 
 
 Merge sort operates on the principle that a list with a single element is considered sorted. To that end, the merge sort algorithm repeatedly divides an array until it has arrived at a sublist with a single element. The single elements are compared and merged, until a sorted array is generated which contains all of the origial elements. 
 
+## Example
+
+![Example Sort](/structures-algorithms/assets/images/merge-sort.png)
