@@ -32,7 +32,7 @@ Merge sort operates on the principle that a list with a single element is consid
 
 The above example uses the following list: 5,2,1,3,4,6
 
-This list is passed as an argument to a recursive split function. The psuedo code for the split function is as follows:
+This list is passed as an argument to a recursive split function. The pseudocode for the split function is as follows:
 
 ```c++
 void split(int a[], start, end, int b[]){
@@ -43,9 +43,11 @@ void split(int a[], start, end, int b[]){
    merge(a, start, middle, end, b)
 }
 ```
-Where 'a[]' is the array containing the unsorted data, start and end are inex references to the particular recursive iteration's sublist, and 'b[]' is a dummy array, used for holding elements as needed.
+Where 'a[]' is the array containing the unsorted data, start and end are index references to the particular recursive iteration's sublist, and 'b[]' is a dummy array, used for holding elements as needed.
 
-Notice that the nested split calls swap the positions of 'a[]' and 'b[]'. The reason is that a and b alternate between being used as containers for sorted and unsorted data. 
+Notice that the nested split calls swap the positions of 'a[]' and 'b[]'. The reason is that a and b alternate between being used as containers for sorted and unsorted data. A diagram of the alternation, along with the recursive split calls is pictured below:
+
+![Example Sort 4](/structures-algorithms/assets/images/merge-sort-4.png)
 
 The first split call uses 0 and the length of the array as arguments for start and end, middle is set to 3((6 + 0)/2) and produces the following two sublists: 5,2,1 and 3,4,6
 
@@ -57,7 +59,7 @@ Again, the left sublist is passed to the split function, but immediately returns
 
 After 2,1 is split to 2 and 1, the merge function located in the third split call is invoked. This merge operates on the single elements 2 and 1. These elements are sorted and placed in the 'b[]'.
 
-Here is the psuedo code for the merge function:
+Here is the pseudocode for the merge function:
 ```c++
 void merge(int a[], int begin, int middle, int end, int b[]){
     int i = begin, j = middle;
