@@ -5,20 +5,15 @@ layout: single
 toc: true
 ---
 
-Merge sort is a comparison based sorting algorithm, utilizing a divide and conquer method. Merge sort operates in O(n log n) run time, while both insertion sort and selection sort have O(n^2) run times. The reason that merge sort operates in O(n log n) time is because the number of divisions necessary for an n element list is logarithmically proportional to the number of elements. The actions necessary to complete the merge sort are as follows:
-
-- Divide each list/sublist until each element is contained within it's own sublist
-- Compare element(s) in sublist a to element(s) in sublist b
-- Merge sublists
+Merge sort is a comparison based sorting algorithm, utilizing a divide and conquer method. Merge sort operates in O(n log n) run time, while both insertion sort and selection sort have O(n^2) run times. The reason that merge sort operates in O(n log n) time is that n comparisons are done for each division. Each division halves the previous division, so there are n comparisons that happen log(n) times. 
 
 The number of comparisons per sublist is proportional to the number of elements in the sublist, producing the 'n' factor of O(*n* log n). Since comparisons happen between sublists, and the number of sublists is the result of continually halving the original list, the amount of comparisons executed is only logarithmically proportional to the number of elements in original list, producing the log n factor of O(n *log n*).
 
-| Merge Sort                  |   |
-|:---------------------------:|:-:|
-| Best-case performance       |   |
-| Worst-case performance      |   |
-| Average performance         |   |
-| Worst-case space complexity |   |
+| Merge Sort                  |            |
+|:---------------------------:|:----------:|
+| Best-case performance       | O(n log n) |
+| Worst-case performance      | O(n log n) |
+| Average performance         | O(n log n) |
 
 
 ## Algorithm
