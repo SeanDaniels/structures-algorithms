@@ -86,10 +86,14 @@ i it initialized to point to the beginning of the left sublist being merged, and
 
 k is initialized and bounded to be able to iterated through the entire range of the two sublists.
 
+Note that range of 'k' is exclusively less than the end value. The split and merge functions only operate on indices that are strictly *less* than this.
+
 Here is a graphical representation of the logic:
 
 ![Example Sort 2](/structures-algorithms/assets/images/merge-sort-2.png)
 
 The merge call finishes the third split subroutine and the function returns to the second split function, which merges the sublist that was just sorted (1, 2) with the single element 5.
 
-This merge 
+The flow of this merge is pictured below:
+
+![Example Sort 3](/structures-algorithms/assets/images/merge-sort-3.png)
