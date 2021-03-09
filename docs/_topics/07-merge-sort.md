@@ -79,11 +79,11 @@ In the merge call, 'b[]' is the destination array, 'a[]' is the source array, an
 
 The element being copied to the destination array is either located at the i'th index of source array or j'th index of the source array. 
 
-i it initialized to point to the beginning of the left sublist being merged, and j is initialized to point to the beginning of the right sublist being merged. 
+i is initialized to point to the beginning of the left sublist being merged, and j is initialized to point to the beginning of the right sublist being merged. 
 
-k is initialized and bounded to be able to iterated through the entire range of the two sublists.
+k is initialized and bounded to be able to iterate through the entire range of the two sublists.
 
-Note that range of 'k' is exclusively less than the end value. The split and merge functions only operate on indices that are strictly *less* than this.
+Note that the range of 'k' is exclusively less than the end value. The split and merge functions only operate on indices that are strictly *less* than this.
 
 Here is a graphical representation of the logic:
 
