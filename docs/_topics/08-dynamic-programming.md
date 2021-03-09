@@ -25,6 +25,8 @@ The 0th and 1st elements of the fibonacci sequence are base cases, set at 0 and 
 
 This function would will call recursively until either of the base cases are met. The function call graph would look like:
 
+![Fibb Call](/structures-algortihms/assets/images/fibb-call-graph.jpg)
+
 The repeated calculations that produce the same result can be costly. All recursive functions suffer from this potential limitation. 
 
 The results of the calculations could instead be stored in an array, saving some of the overhead. It should be noted that while this can save some performance overhead, dynamic programming does increase the storage overhead of a routine. 
