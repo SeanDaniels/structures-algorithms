@@ -69,3 +69,46 @@ for(int i = 2; i < desiredIndex; i++){
     fibb[i] = fibb[i-2] + fibb[i-1];
 }
 ```
+
+## Observation
+
+The difficulty associated with dynamic programming is the intuition associated with identifying the pattern that generates the next iteration's solution.
+
+Common candidates for dynamic programming solutions include:
+- Optimization problems
+- Set problems
+
+## Example
+
+The knapsack problem is a common optimization problem. Given a set of values, an associated set of weights, and a container that can only support a fixed maximum weight, find the set that would sum to maximum value.
+
+For example, given the following value/weight sets:
+
+Values:
+| 60 | 100 | 120 |
+
+Weights:
+| 10 | 20 | 30  |
+
+and a max weight of 50, what is the maximum subset of values such that the sum of their associated weights is less than or equal to the max weight? The values are atomic, meaning they can not be taken partially. They either exist in the solution set or they don't. 
+
+One approach to this problem is to view each value with respect to the values that are already known.
+
+Instead of looking at the entire set, start with just the first value in the set. 
+
+If the question was to pick a single item with a weight less than 50, and there is only one choice, and that item has a value of 60, the solution is apparent.
+
+Using this idea, a table of values can be built. The number of rows in the table determined by the number of items in the value set, and the number of columns in the table is determined by the given weight limit, divided by the smallest weight. Since, the values are atomic, the columns of the table can only increase at the rate of the smallest weight. 
+
+
+|         | 0 | 10 | 20  | 30  | 40  | 50  |
+|---------|---|:--:|:---:|:---:|-----|-----|
+| 60(10)  | 0 | 60 | 60  | 60  | 60  | 60  |
+| 100(20) | 0 | 60 | 120 | 160 | 160 | 160 |
+| 120(30) | 0 | 60 | 120 | 160 | 180 | 240 |
+
+Looking at the first row of the table, which is indicating the maximum value associated with choosing one item, the maximum value is 60. This table stops at 50, but if the max weight is any value greater than or equal to 10, the maximum value will 60.
+
+In the second row of the table, choices now include value 1 and value 2. While the number of choices has increased, this has no impact on the maximum value until the maximum weight is equal to weight associated with the second value. 
+
+
