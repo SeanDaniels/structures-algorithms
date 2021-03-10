@@ -4,7 +4,7 @@ permalink: /topics/dynamic-programming/
 layout: single
 toc: true
 ---
-Long story short, dynamic programming is a description of a programming method which uses previously computed results to obtain current results. 
+Dynamic programming is a description of a programming method which uses previously computed results to obtain current results. 
 
 Any solution that depends upon a previous solution, or could be returned by a formulaic alteration to an existing solution, is a candidate for dynamic programming. A common example is a function to determine the nth value of the fibonacci sequence. 
 
@@ -25,7 +25,7 @@ The 0th and 1st elements of the fibonacci sequence are base cases, set at 0 and 
 
 This function would will call recursively until either of the base cases are met. The function call graph would look like:
 
-![Fibb Call](/structures-algortihms/assets/images/fibb-call-graph.jpg)
+![Fibb Call](/structures-algorithms/assets/images/fibb-call-graph.jpg)
 
 The repeated calculations that produce the same result can be costly. All recursive functions suffer from this potential limitation. 
 
