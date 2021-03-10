@@ -23,3 +23,5 @@ topics:
     url: /topics/insertion-sort
   - title: "Merge Sort"
     url: /topics/merge-sort
+  - title: "Dynamic Programming"
+    url: /topics/dynamic-programming
