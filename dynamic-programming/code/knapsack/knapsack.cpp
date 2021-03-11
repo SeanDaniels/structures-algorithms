@@ -32,8 +32,6 @@ int recursiveSolution(vector<int> &values, vector<int> &weights, int availableSp
 int main(){
     vector<int> values = {60, 100, 120};
     vector<int> weights = {10, 20, 30};
-<<<<<<< HEAD
-=======
     cout << recursiveSolution(values, weights, 50, 0) << endl;
     // vector<vector<int>> table;
     // unordered_map<int, int> valueMap;
@@ -55,7 +53,5 @@ int main(){
     //     if(currWeight < tempWeight) tempMax.push_back(0);
     //     else if(currWeight)
     // }
->>>>>>> cd01d8d6e0c7e09260e2c2456b55b12b2f1d752b
-
-
+    return 0;
 }
