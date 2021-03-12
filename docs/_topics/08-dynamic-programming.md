@@ -23,7 +23,7 @@ int fibb(int pos){
 ```
 The 0th and 1st elements of the fibonacci sequence are base cases, set at 0 and 1. 
 
-This function would will call recursively until either of the base cases are met. The function call graph would look like:
+This function will call recursively until either of the base cases are met. Here is how the function call graph looks for recursively determining the 5th number in the fibonacci sequence. 
 
 ![Fibb Call](/structures-algorithms/assets/images/fibb-call-graph.jpg)
 
