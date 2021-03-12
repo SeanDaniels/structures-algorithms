@@ -28,30 +28,61 @@ int recursiveSolution(vector<int> &values, vector<int> &weights, int availableSp
     cout << "Value options: " << value1 << ", " << value2 << endl;
     return max(value1, value2);
 }
+void printVectorOfVectors(vector<vector<int>> &thisVofV){
+    for(auto x : thisVofV){
+        for(auto y = x.begin(); y != x.end(); y++){
+           cout << *y;
+           if(y==x.end()-1)cout << endl;
+           else cout << ", ";
+        }
+    }
+}
 
 int main(){
     vector<int> values = {60, 100, 120};
     vector<int> weights = {10, 20, 30};
-    cout << recursiveSolution(values, weights, 50, 0) << endl;
-    // vector<vector<int>> table;
-    // unordered_map<int, int> valueMap;
-    // int granularity = 10, maxWeight = 50;
-    // int numberOfColumns = maxWeight/granularity;
-    // int numberOfRows = values.size()-1;
-    // vector<int> tempValues, tempMax;
-    // for(int i = 0; i < values.size(); i++){
-    //     auto mapIterator = valueMap.find(values[i]);
-    //     if(mapIterator==valueMap.end()){
-    //         valueMap.insert({values[i], weights[i]});
-    //     }
-    // }
+    vector<int> capacities;
+    for(int i = 0; i < 6; i++){
+        capacities.push_back(10*i);
+    }
+    cout << "Capacities: " << endl;
+    for(auto x : capacities){
+        cout << x;
+        if(x==capacities.back()) cout << endl;
+        else cout << ", ";
+    }
+    vector<vector<int>> dp(values.size(), vector<int>(capacities.size()));
+    cout << "Un-initialized 0 table:" << endl;
+    printVectorOfVectors(dp);
 
-    // tempValues.push_back(values[0]);
-    // int tempWeight = valueMap.find(values[0])->second;
-    // for(int i = 0; i < numberOfColumns; i++){
-    //     int currWeight = granularity*i;
-    //     if(currWeight < tempWeight) tempMax.push_back(0);
-    //     else if(currWeight)
-    // }
+    for(size_t i = 0; i < capacities.size(); i++){
+        if(capacities[i]>=weights[0]){
+            dp[0][i] = values[0];
+        }
+    }
+
+    cout << "Initialized table(first row set):" << endl;
+    printVectorOfVectors(dp);
+
+    for(size_t i = 1; i < values.size(); i++){
+        for(size_t j = 1; j < capacities.size(); j++){
+            int valueA = 0, valueB = 0;
+            if(weights[i] <= capacities[j]){
+                cout << "Current capacity: " << capacities[j] << endl;
+                cout << "Weight of this item: " << weights[i] << endl;
+                int colIndex = (capacities[j] - weights[i])/10;
+                cout << "Using col index: " << colIndex << endl;
+                valueA = values[i] + dp[i-1][colIndex];
+                cout << "Possible value(a): " << valueA << endl;
+            }
+            cout << "Generating possible value from index location i,j: " << i-1 << "," << j << endl;
+            valueB = dp[i-1][j];
+            cout << "Possible value(b): " << valueB << endl;
+            dp[i][j] = max(valueA, valueB);
+        }
+    }
+
+    cout << "Complete table:" << endl;
+    printVectorOfVectors(dp);
     return 0;
 }
