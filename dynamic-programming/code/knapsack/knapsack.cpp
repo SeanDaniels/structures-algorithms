@@ -65,11 +65,12 @@ int main(){
     // i,j = row,col
     // start at 1 for both -> row 0 has already been set (single item case), col 0 has already been set (0 capacity case)
     for(size_t i = 1; i < values.size(); i++){
+        int currentItemWeight = weights[i];
         for(size_t j = 1; j < capacities.size(); j++){
-            int valueA = 0, valueB = 0;
-            if(weights[i] <= capacities[j]){
+            int valueA = 0, valueB = 0, currentKnapsackCapacity = capacities[j];
+            if(currentItemWeight <= currentKnapsackCapacity){
                 // this is only valid for this weight/capacity relationship.
-                int colIndex = (capacities[j] - weights[i])/10;
+                int colIndex = (currentKnapsackCapacity - currentItemWeight)/10;
                 // include this item
                 // the value will be this items value + the maximum determined value at this capacity prior to this item
                 valueA = values[i] + dp[i-1][colIndex];

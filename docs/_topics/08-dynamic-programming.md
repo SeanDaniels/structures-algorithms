@@ -104,11 +104,19 @@ Using this idea, a table of values can be built. The number of rows in the table
 |         | 0 | 10 | 20  | 30  | 40  | 50  |
 |---------|---|:--:|:---:|:---:|-----|-----|
 | 60(10)  | 0 | 60 | 60  | 60  | 60  | 60  |
-| 100(20) | 0 | 60 | 120 | 160 | 160 | 160 |
-| 120(30) | 0 | 60 | 120 | 160 | 180 | 240 |
+| 100(20) | 0 | 60 | 100 | 160 | 160 | 160 |
+| 120(30) | 0 | 60 | 100 | 160 | 180 | 220 |
 
-Looking at the first row of the table, which is indicating the maximum value associated with choosing one item, the maximum value is 60. This table stops at 50, but if the max weight is any value greater than or equal to 10, the maximum value will 60.
+Looking at the first row of the table, which contains the maximum value associated with choosing one item, the maximum value is 60. This table stops at 50, but if the capacity is any value greater than or equal to 10, the maximum value will still be 60.
 
-In the second row of the table, choices now include value 1 and value 2. While the number of choices has increased, this has no impact on the maximum value until the maximum weight is equal to weight associated with the second value. 
+In the second row of the table, choices now include value 1 and value 2. While the number of choices has increased, this has no impact on the maximum value until the capacity is equal to the weight associated with the second value. Even with two choices, the maximum value possible while the capcity is less than or equal to 10 is the value associated with single item used before.
 
+When the capacity reaches 20, which is the weight of the second item, a decision must be made. Include the item or not. There is a value associated with each choice, so both outcomes need to be computed and compared. 
 
+If the item is included, the maximum value at this capacity will be this item's value and whatever other items can exist in the container in addition to this item.
+
+This highlights the functionality of the table. The maximum value at any previous capacity with out the current item has already been determined. The only action necessary is to determine the location of that result in the table. The table is organized by capacity, so the target value is located at the index of the capacity after the current items weight has been deducted from it. If the current item is included, which has a weight of 20, then the capacity is reduced by 20, making the remaining capacity 0. Referencing the table, the maximum value with respect to the previous item at this capacity is 0. If this item is included, it will be the only item in the container, and the value of the container will be 100. 
+
+If this item is not included, the max value that the container can have is the same value of the container determined for the previous item, which is 60.
+
+Comparing these two values (60 and 100), the choice should be to select this item.
