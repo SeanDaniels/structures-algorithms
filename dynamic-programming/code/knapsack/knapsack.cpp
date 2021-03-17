@@ -1,10 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int getMax(int colIndex, int rowIndex,
-           unordered_map<int, vector<int>> &thisMap) {
-  return 0;
-}
 
 int recursiveSolution(vector<int> &values, vector<int> &weights, int availableSpace, int currentIndex){
     // if no space is available, exit
@@ -28,6 +24,7 @@ int recursiveSolution(vector<int> &values, vector<int> &weights, int availableSp
     cout << "Value options: " << value1 << ", " << value2 << endl;
     return max(value1, value2);
 }
+
 void printVectorOfVectors(vector<vector<int>> &thisVofV){
     for(auto x : thisVofV){
         for(auto y = x.begin(); y != x.end(); y++){
@@ -47,6 +44,7 @@ int main(){
     for(int i = 0; i < 6; i++){
         capacities.push_back(10*i);
     }
+
     cout << "Capacities: " << endl;
     vector<vector<int>> dp(values.size(), vector<int>(capacities.size()));
     cout << "Un-initialized 0 table:" << endl;
