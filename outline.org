@@ -1,0 +1,16 @@
+#+TITLE: Outline
+Week 1: Search - binary search
+Week 2: Search - Hash table, hash functions
+Week 3: Search - Extendible Hashing
+Week 4: Sort: Review selection/insertion
+Week 5: Sort: Merge Sort
+Week 6: Sort: Radix Sort
+Week 7: Linked List: circular linked list (find a cycle)
+Week 8: List: Sort a List using merge sort, recursively
+Week 9: Tree - various traversals, in-order, pre-order, level-order
+Week 10: Graph - Dijkstra's algorithm, Floyd–Warshall algorithm
+Week 11: Graph - Union-find algorithm; Use it for Minimum Spanning Tree
+Week 12: Dynamic Programming (background)
+Week 13: Dynamic Programming - Longest Common Subsequences
+Week 14: Dynamic Programming - Minimum Window Substring
+Week 15: Dynamic Programming - Levenshtein's Edit Distance
