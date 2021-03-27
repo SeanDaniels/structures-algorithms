@@ -23,5 +23,7 @@ topics:
     url: /topics/insertion-sort
   - title: "Merge Sort"
     url: /topics/merge-sort
-  - title: "Dynamic Programming"
+  - title: "Dynamic Programming (knapsack)"
     url: /topics/dynamic-programming
+  - title: "Dynamic Programming (LCSS)"
+    url: /topics/longest-common-substring
