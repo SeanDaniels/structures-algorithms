@@ -5,7 +5,7 @@ The following topics will be covered:
 
 - Searching
 - Sorting
-- Dynamic Programming Al
+- Dynamic Programming
 
 The following data structures will be examined:
 
