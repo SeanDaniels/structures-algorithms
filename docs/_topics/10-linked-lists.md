@@ -37,4 +37,95 @@ class ll {
 };
 ```
 
-The ll class contains functions which act of the list structure. 
+The ll class contains functions which act of the list structure. The class is instantiated with it's head pointing to nothing.
+
+## Appedning a node
+
+Appending a node is adding a node to the end of the list. Here is the implementation:
+
+```c++
+appendNode(int val){
+    node* newNode = new node;
+    newNode->data = val;
+    newNode->next = nullptr;
+    if(this->head == nullptr){
+        this->head = newNode;
+        return;
+    }
+
+    node* listIterator = this->head;
+
+    while(listIterator->next){
+        listIterator = listIterator->next;
+    }
+
+    listIterator->next = newNode;
+    return;
+}
+```
+
+## Inserting a node
+
+For this list, the values are ordered from low to high. Insertion differs from appending in that the position of the new node within the list depends on the values of the other nodes. Here is the implementation of inserting a node into the list:
+
+```c++
+insert(int val){
+    node* newNode = new node;
+    newNode->data = val;
+    newNode->next = nullptr;
+    node* curr = this->head;
+    node* prev = curr;
+    // no head
+    if(curr == nullptr){
+        this->head = newNode;
+        return;
+    }
+    while(curr){
+      if (curr->data > newNode->data) {
+        // new data < head data
+        if (curr == prev) {
+          newNode->next = curr;
+          this->head = newNode;
+          return;
+        }
+        // new data inserted between two existing nodes
+        prev->next = newNode;
+        newNode->next = curr;
+        return;
+      }
+      // update previous, increment current
+      prev = curr;
+      curr = curr->next;
+    }
+    // new node is greater than tail, append it
+    prev->next = newNode;
+}
+```
+
+## Removing a node
+
+Here is the code for removing a node (if it exists) from the list
+
+```c++
+removeNode(int val){
+    node* curr = this->head;
+    node* prev = curr;
+    if(!curr){
+        return;
+    }
+    while(curr){
+        if(curr->data == val){
+            if(curr==this->head){
+                this->head = curr->next;
+                delete(curr);
+                return;
+            }
+            prev->next = curr->next;
+            delete(curr);
+            return;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+}
+```
