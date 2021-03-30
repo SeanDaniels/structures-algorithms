@@ -6,7 +6,7 @@ toc: true
 ---
 # Where are linked lists used?
 
-In computer science, linked lists are used as a fundamental concept for implementing other data structures, such as stacks and queues. 
+Linked lists are used as a fundamental concept for implementing other data structures, such as stacks and queues. 
 
 Linked lists are also used for specific implementations of certain varieties of other data structures, like the chaining method of handling hash table collisions.
 
@@ -129,3 +129,12 @@ removeNode(int val){
     }
 }
 ```
+# Circular linked list
+
+The above implementation creates a simple linked list. This type is linear. There is a definite beginning and end. 
+
+A circular list is a cycle of nodes. The beginning and end of the list can be reached from any point in the list. Any node can be reached from any start point in the list.
+
+Circular linked lists are used in implementing some queues, and are also useful for accessing elements continuously in an in order fashion. For example, if a scheduler that is running different processes at given intervals could use a linked list to continuously iterate through the different processes. 
+
+# Circular linked list implementation
