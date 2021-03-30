@@ -10,9 +10,14 @@ class ll {
     public:
         struct node* head;
         ll(){ head = nullptr;}
+        // linear linked list functions
         void appendNode(int val);
         void insert(int val);
         node* find(int val);
         void removeNode(int val);
         void printList();
+        // circular linked list functions
+        void appendCircle(int val);
+        void printCircle();
+        void insertCircle(int val);
 };
