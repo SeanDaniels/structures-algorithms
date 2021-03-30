@@ -12,7 +12,7 @@ string two = "Get"
 possible substrings of Pet: P, Pe, Pet, e, et, t
 possible substrings of Get: G, Ge, Get, e, et, t
 
-The naive approach consists of generating all possible substrings of string one, storing those substrings, generating all possible substrings of string two, and comparing them with all of the stored substrings of string one. If a match is found, the length of the match is compared against the current longest match value. If the new matches length is greater than the current longest match value, the current longest match value is updated to reflect the new longest match value.
+A naive approach consists of generating all possible substrings of string one, storing those substrings, generating all possible substrings of string two, and comparing them with all of the stored substrings of string one. If a match is found, the length of the match is compared against the current longest match value. If the new match's length is greater than the current longest match value, the current longest match value is updated to reflect the new longest match value.
 
 Here is an example of this naive solution, using a map structure.
 
