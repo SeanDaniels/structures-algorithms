@@ -9,6 +9,8 @@ main:
     url: /about/
 
 topics:
+  - title: "Linked Lists"
+    url: /topics/linked-lists
   - title: "Binary Search"
     url: /topics/binary-search
   - title: "Hashing"
