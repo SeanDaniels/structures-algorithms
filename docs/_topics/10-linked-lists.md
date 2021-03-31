@@ -38,8 +38,20 @@ class ll {
 ```
 
 The ll class contains functions which act of the list structure. The class is instantiated with it's head pointing to nothing.
+## Adding a node to the list
 
-## Appedning a node
+There are three cases for adding a node to linked list:
+
+- The list is empty
+- The list has a single node
+- The list has more than one node
+
+If the node is being appended to the list, only two of the cases need to be considered: 
+
+- The list is empty
+- The list is not empty
+
+### Appending a node
 
 Appending a node is adding a node to the end of the list. Here is the implementation:
 
@@ -48,11 +60,13 @@ appendNode(int val){
     node* newNode = new node;
     newNode->data = val;
     newNode->next = nullptr;
+    // empty list, update head
     if(this->head == nullptr){
         this->head = newNode;
         return;
     }
-
+    
+    // non-empty list, find end
     node* listIterator = this->head;
 
     while(listIterator->next){
@@ -64,9 +78,14 @@ appendNode(int val){
 }
 ```
 
-## Inserting a node
+### Inserting a node
 
 For this list, the values are ordered from low to high. Insertion differs from appending in that the position of the new node within the list depends on the values of the other nodes. Here is the implementation of inserting a node into the list:
+
+The three cases that must be checked are:
+- The list is empty
+- The list has a single node
+- The list has more than one node
 
 ```c++
 insert(int val){
@@ -75,11 +94,12 @@ insert(int val){
     newNode->next = nullptr;
     node* curr = this->head;
     node* prev = curr;
-    // no head
+    // empty list
     if(curr == nullptr){
         this->head = newNode;
         return;
     }
+    // non-empty list
     while(curr){
       if (curr->data > newNode->data) {
         // new data < head data
@@ -104,7 +124,9 @@ insert(int val){
 
 ## Removing a node
 
-Here is the code for removing a node (if it exists) from the list
+Removing a node from a linked list involves locating the target node, updating the pointers that are effected by the removal of the target node, and removing the node.
+
+Here is the code for removing a node (if it exists) from the list:
 
 ```c++
 removeNode(int val){
@@ -129,12 +151,31 @@ removeNode(int val){
     }
 }
 ```
+
 # Circular linked list
 
-The above implementation creates a simple linked list. This type is linear. There is a definite beginning and end. 
+The above implementation creates a simple linked list. This type of list is linear. There is a definite beginning and end. 
 
 A circular list is a cycle of nodes. The beginning and end of the list can be reached from any point in the list. Any node can be reached from any start point in the list.
 
-Circular linked lists are used in implementing some queues, and are also useful for accessing elements continuously in an in order fashion. For example, if a scheduler that is running different processes at given intervals could use a linked list to continuously iterate through the different processes. 
+Circular linked lists are used in implementing some queues, and are also useful for accessing elements continuously in an in order fashion. For example, if a scheduler is running different processes at given intervals could use a linked list to continuously iterate through the different processes. 
 
 # Circular linked list implementation
+
+The general structure of a circular linked list is mostly the same as that of a linear linked list. The only difference between the two structures is that the 'last' node in the list points to the head of the list.
+
+Insertion into an empty circular linked list looks like this:
+```c++
+void insert(int val){
+    node* newNode = new node;
+    newNode->data = val;
+    newNode->next = nullptr;
+    // list is empty
+    if(this->head== nullptr){
+        this->head = newNode;
+        // point new node to itself
+        newNode->next = this->head;
+        return;
+    }
+}
+```
