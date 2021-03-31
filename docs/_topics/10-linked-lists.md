@@ -160,7 +160,12 @@ Circular linked lists are used in implementing some queues, and are also useful 
 
 The general structure of a circular linked list is mostly the same as that of a linear linked list. The only difference between the two structures is that the 'last' node in the list points to the head of the list.
 
-Insertion into an empty circular linked list looks like this:
+When performing operations on a linear linked list, iteration through the list ends when the iterator is updated to a null pointer. In a non-empty circular linked list, there are no nodes which contain a null pointer, so iteration is controlled by storing a pointer to the head of the list, and halting iteration when the iterator's next pointer points to the head of the list. 
+
+Also, insertion into a circular linked list needs to account for potential changes in the tail node's pointer, with respect to the head of the list.
+
+Insertion into an circular linked list looks like this:
+
 ```c++
 void insert(int val){
     node* newNode = new node;
@@ -171,6 +176,85 @@ void insert(int val){
         this->head = newNode;
         // point new node to itself
         newNode->next = this->head;
+        return;
+    }
+
+    if(curr->next == this->head){
+        // head->value < new value
+      if (curr->data < val) {
+        curr->next = newNode;
+        newNode->next = this->head;
+        return;
+      }
+      // head value > new value
+      this->head = newNode;
+      newNode->next = curr;
+      curr->next = this->head;
+      return;
+    }
+    // more than one entry in list
+    while(curr->next != this->head){
+        // found a value that is greater than new value
+        // new node needs to point to curr node
+        if(curr->data > val){
+            // if new value is less than head value
+            if(prev==curr){
+                // find current tail
+                while(prev->next != this->head) {
+                    prev = prev->next;
+                }
+                //set current tail to point to new node
+                prev->next = newNode;
+                newNode->next = curr;
+                this->head = newNode;
+                return;
+            }
+        }
+        prev = curr;
+        curr = curr->next;
+}
+}
+```
+
+Deletion:
+
+```c++
+deleteCircle(int val){
+    if(this->head == nullptr){
+        return;
+    }
+    node* curr = this->head;
+    node* prev = curr;
+
+    // single node in list contains sought data
+    if(curr->next==this->head && curr->data == val){
+        this->head = nullptr;
+        delete(curr);
+        return;
+    }
+
+    while(curr->next!=this->head){
+        if(curr->data == val){
+            // multiple nodes, head contains sought data
+            if(prev == curr){
+                while(prev->next!=this->head){
+                    prev = prev->next;
+                }
+                this->head = curr->next;
+                prev->next = this->head;
+                delete(curr);
+                return;
+            }
+            prev->next = curr->next;
+            delete(curr);
+            return;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+    if(curr->data == val){
+        prev->next = head;
+        delete(curr);
         return;
     }
 }
