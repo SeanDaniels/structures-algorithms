@@ -20,4 +20,5 @@ class ll {
         void appendCircle(int val);
         void printCircle();
         void insertCircle(int val);
+        void deleteCircle(int val);
 };

@@ -82,10 +82,6 @@ appendNode(int val){
 
 For this list, the values are ordered from low to high. Insertion differs from appending in that the position of the new node within the list depends on the values of the other nodes. Here is the implementation of inserting a node into the list:
 
-The three cases that must be checked are:
-- The list is empty
-- The list has a single node
-- The list has more than one node
 
 ```c++
 insert(int val){

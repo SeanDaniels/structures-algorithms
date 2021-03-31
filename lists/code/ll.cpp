@@ -184,7 +184,10 @@ void ll::insertCircle(int val){
 
 void ll::printCircle(){
     node* listIterator = this->head;
-    if(!listIterator) return;
+    if(!listIterator){
+      cout << "*empty*" << endl;
+      return;
+    }
     cout << "*head* -> ";
     while (listIterator->next != head) {
         cout << listIterator->data << " -> ";
@@ -194,6 +197,46 @@ void ll::printCircle(){
     cout << " -> *head*\n";
 
 
+}
+
+void ll::deleteCircle(int val){
+    if(this->head == nullptr){
+        return;
+    }
+    node* curr = this->head;
+    node* prev = curr;
+
+    // single node in list contains sought data
+    if(curr->next==this->head && curr->data == val){
+        this->head = nullptr;
+        delete(curr);
+        return;
+    }
+
+    while(curr->next!=this->head){
+        if(curr->data == val){
+            // multiple nodes, head contains sought data
+            if(prev == curr){
+                while(prev->next!=this->head){
+                    prev = prev->next;
+                }
+                this->head = curr->next;
+                prev->next = this->head;
+                delete(curr);
+                return;
+            }
+            prev->next = curr->next;
+            delete(curr);
+            return;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+    if(curr->data == val){
+        prev->next = head;
+        delete(curr);
+        return;
+    }
 }
 
 void doInsertions(ll &thisList){
@@ -228,6 +271,12 @@ int main(){
     circularList.insertCircle(3);
     circularList.insertCircle(1);
     circularList.insertCircle(2);
+    circularList.printCircle();
+    circularList.deleteCircle(3);
+    circularList.printCircle();
+    circularList.deleteCircle(2);
+    circularList.printCircle();
+    circularList.deleteCircle(1);
     circularList.printCircle();
     // doInsertions(linearList);
     // doSearch(linearList);
