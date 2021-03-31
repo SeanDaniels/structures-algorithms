@@ -6,6 +6,8 @@ toc: true
 ---
 # Where are linked lists used?
 
+![Example Circular Linked List](/structures-algorithms/assets/images/linear-ll.jpg)
+
 Linked lists are used as a fundamental concept for implementing other data structures, such as stacks and queues. 
 
 Linked lists are also used for specific implementations of certain varieties of other data structures, like the chaining method of handling hash table collisions.
@@ -149,6 +151,8 @@ removeNode(int val){
 ```
 
 # Circular linked list
+
+![Example Circular Linked List](/structures-algorithms/assets/images/circular-ll.jpg)
 
 The above implementation creates a simple linked list. This type of list is linear. There is a definite beginning and end. 
 
