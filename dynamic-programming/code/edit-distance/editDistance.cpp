@@ -18,32 +18,32 @@ int main(){
     vector<vector<int>> dp(a.size(), vector<int>(b.size()));
     // initialize row 0 and column 0
     // row 0 comes from comparing a[0] with b[0] through b[size - 1]
-    for(int i = 0; i < b.size(); i++){
-        if(i==0){
-            if(a[0]==b[0]){
-               dp[0][0] = 0;
+    cout << "Generating table for number of operations to transform '" << a << "' into '" << b << "'" << endl;
+    for(int i = 0; i < a.size(); i++){
+        for(int j = 0; j < b.size(); j++){
+            if(i==0 && j==0){
+                if(a[i]==b[j]) dp[i][j] = 0;
+                else dp[i][j] = 1;
             }
-            else{
-                dp[0][0] = 1;
+            else if(i==0){
+                dp[i][j] = dp[i][j-1]+1;
             }
-        }
-        else{
-            dp[0][i] = dp[0][i-1] + 1;
+            else if(j==0) dp[i][j] = dp[i-1][j]+1;
+            else if(i>0 && j>0) break;
         }
     }
-    for(int i = 1; i < a.size(); i++){
-        dp[i][0] = dp[i-1][0] + 1;
-    }
+    cout << "Table after initializing: " << endl;
+    printVectorOfVectors(dp);
     for(int i = 1; i < a.size(); i++){
         for(int j = 1; j < b.size(); j++){
-            if(a[i]==b[j]) dp[i][j] = dp[i-1][j-1];
+            if(j>i)dp[i][j] = dp[i][j-1]+1;
+            else if(a[i]==b[j]) dp[i][j] = min(dp[i-1][j-1], min(dp[i][j-1], dp[i-1][j]));
             else{
-                if(i>j) dp[i][j] = dp[i][j-1] - 1;
-                else if(j>i)dp[i][j] = dp[i][j-1] + 1;
-                else dp[i][j] = dp[i-1][j-1] + 1;
+              dp[i][j] = min(dp[i - 1][j - 1], min(dp[i][j - 1], dp[i - 1][j])) + 1;
             }
         }
     }
+    cout << "Table after all iterations:" << endl;
     printVectorOfVectors(dp);
     cout << "Solution: " << dp[a.size()-1][b.size()-1] << endl;
     return 0;
