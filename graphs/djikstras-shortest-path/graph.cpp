@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define INF -1
-#define NUM_VERTICES 6
+#define NUM_NODES 6
 void printVectorOfVectors(vector<vector<int>> &thisVofV){
     for(auto x : thisVofV){
         for(auto y = x.begin(); y != x.end(); y++){
@@ -12,12 +12,12 @@ void printVectorOfVectors(vector<vector<int>> &thisVofV){
     }
 }
 
-int minDistance(vector<int> &distanceVector, vector<bool> &pathSet){
+int findNextMinimumDistance(vector<int> &distanceVector, vector<bool> &pathSet){
     // initialize minimum value to large number
     int min = INT_MAX;
     int minIndex;
     // check for each node in shortest path set
-    for(int i = 0; i < NUM_VERTICES; i++){
+    for(int i = 0; i < NUM_NODES; i++){
         // if node does not exist in the shortest path set and the distance value for this node is less than the current minimum value
         if(pathSet[i] == false && distanceVector[i] <= min){
             // updated minimum to this value
@@ -28,30 +28,35 @@ int minDistance(vector<int> &distanceVector, vector<bool> &pathSet){
     }
     return minIndex;
 }
+
 void printShortestPath(vector<int> &distanceVector){
-    cout << "Vertex \t\t Distance from source\n";
+    cout << "Node\t\t Distance from source\n";
     for(int i = 0; i < distanceVector.size(); i++){
-        cout << i << " \t\t " << distanceVector[i] << endl;
+        cout << i << setw(6) << " \t\t " << distanceVector[i] << endl;
     }
 }
 
 void doDijkstra(vector<vector <int>> &thisGraph, int srcIndex){
     vector<int> distanceVector;
     vector<bool> pathSet;
-    for(int i = 0; i < NUM_VERTICES; i++){
+    for(int i = 0; i < NUM_NODES; i++){
         distanceVector.push_back(INT_MAX);
         pathSet.push_back(false);
     }
     distanceVector[srcIndex] = 0;
     // initial distanceVector = {0, int_max, int_max, int_max, int_max, int_max}
     // initial pathSet = { false, false, false, false, false, false }
-    for(int j = 0; j < NUM_VERTICES - 1; j++){
+    for(int j = 0; j < NUM_NODES - 1; j++){
         // find shortest path to un visited nodes
-        int shortestIndex = minDistance(distanceVector, pathSet);
+        int shortestIndex = findNextMinimumDistance(distanceVector, pathSet);
         // update visited node list
         pathSet[shortestIndex] = true;
 
-        for(int k = 0; k < NUM_VERTICES; k++){
+        for(int k = 0; k < NUM_NODES; k++){
+            // !pathSet[k] -> this node hasn't been visited
+            // thisGraph[shortestIndex][k] -> is there a path from the current node to the unvisited node
+            // distanceVector[shortestIndex] != INT_MAX -> a shortest path has been determined for the current node
+            // distanceVector[shortestIndex] + thisGraph[shortestIndex][k] < distanceVector[k] -> the value to get the current node + the value to get from current node to a given node is less than the value already contained in the distanceVector vector
             if(!pathSet[k] && thisGraph[shortestIndex][k] && distanceVector[shortestIndex] != INT_MAX && distanceVector[shortestIndex] + thisGraph[shortestIndex][k] < distanceVector[k])
                 distanceVector[k] = distanceVector[shortestIndex] + thisGraph[shortestIndex][k];
         }
@@ -70,7 +75,7 @@ int main(){
     // D: 0, 1, 1, 0, 0, 1
     // E: 0, 1, 0, 1, 0, 1
     // F: 0, 0, 0, 0, 1, 1
-    vector<vector<int>> edgeList(6, vector<int>(6));
+    vector<vector<int>> edgeList(NUM_NODES, vector<int>(NUM_NODES));
     // Node A
     edgeList[0] = {0, 10, 20, 0, 0, 0};
     // Node B
