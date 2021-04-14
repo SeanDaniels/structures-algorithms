@@ -17,16 +17,27 @@ Vertex C: A:20, D:20, E:33
 Vertex D: B:50, C:20, E:20, F:2
 Vertex E: B:10, C:33, D:20, F:1
 
+![Start Graph](/structures-algorithms/assets/images/graph-a.jpg)
+
 # Method
 
 The process involves creating a list of unvisited nodes. For this example, the unvisited set includes {A, B, C, D, E, F}. A seperate set of values is also needed for all the weights associated with getting to a given node. This example uses node A as a starting point. The root node will have a value of 0 in this value set, and the remaining values will be set to infinity. The initialized set is {0, inf, inf, inf, inf, inf}. Each node in the unvisited set needs to be visited, starting with node A.
+
+![Step One](/structures-algorithms/assets/images/graph-b.jpg)
 
 When node A is visited, the weights associated with connected nodes are evaluated. Node A is connected to nodes B and C. The weights associated with B and C are 10 and 20. These values are added to the values set, which now contains {0, 10, 20, inf, inf, inf}. Node A can now be removed from the unvisited set list. 
 
 Next, node B is visited. Node B is connected to A, D, and E. the values are 10, 50, and 10. The value added to the value set will now be the sum of the value associated with getting to B from A and then from getting to D and E from B. The value set now contains {0, 10, 20, *60*, *20*, inf}. 
 
+![Step Two](/structures-algorithms/assets/images/graph-c.jpg)
+
 Next, node C is visited. Node C is connected to A, D, and E. The values are 20, 20, and 33. 
 
+![Step Three](/structures-algorithms/assets/images/graph-d.jpg)
+
+![Step Four](/structures-algorithms/assets/images/graph-e.jpg)
+
+![Step Five](/structures-algorithms/assets/images/graph-f.jpg)
 Here is the code to determine the next minimum distance to process
 
 ```c++
