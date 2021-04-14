@@ -11,23 +11,36 @@ The purpose of Djikstra's shortest path algorithm is to determine the shortest d
 
 # Example Graph
 
-Vertex A: B:10, C:20
-Vertex B: A:10, D:50, E:10
-Vertex C: A:20, D:20, E:33
-Vertex D: B:50, C:20, E:20, F:2
-Vertex E: B:10, C:33, D:20, F:1
+This is the graph used for this example:
+
 
 ![Start Graph](/structures-algorithms/assets/images/graph-a.jpg)
 
 # Method
 
-The process involves creating a list of unvisited nodes. For this example, the unvisited set includes {A, B, C, D, E, F}. A seperate set of values is also needed for all the weights associated with getting to a given node. This example uses node A as a starting point. The root node will have a value of 0 in this value set, and the remaining values will be set to infinity. The initialized set is {0, inf, inf, inf, inf, inf}. Each node in the unvisited set needs to be visited, starting with node A.
+The process involves creating a list of unvisited nodes. For this example, the unvisited set includes {A, B, C, D, E, F}. In order to track this list of unvisited nodes, a set of boolean values is used, and it is initialized in the following way:
+
+pathSet = { false, false, false, false, false, false }
+
+A seperate set of values is also needed for all the value associated with getting to a given node. This example uses node A as a starting point. The root node will have a value of 0 in this value set, and the remaining values will be set to some max value. The inital distance set is initialized in the following way:
+
+distanceValues = { 0, max, max, max, max, max }
 
 ![Step One](/structures-algorithms/assets/images/graph-b.jpg)
 
-When node A is visited, the weights associated with connected nodes are evaluated. Node A is connected to nodes B and C. The weights associated with B and C are 10 and 20. These values are added to the values set, which now contains {0, 10, 20, inf, inf, inf}. Node A can now be removed from the unvisited set list. 
+When node A is visited, it is removed from the unvisited list, and the weights associated with connected nodes are evaluated. Node A is connected to nodes B and C. The weights associated with B and C are 10 and 20. These values are added to the values set. The visited node set and the distance values are as follows:
+
+pathSet = { true, false, false, false, false, false }
+
+distanceValues = { 0, 10, 20, max, max, max }
 
 Next, node B is visited. Node B is connected to A, D, and E. the values are 10, 50, and 10. The value added to the value set will now be the sum of the value associated with getting to B from A and then from getting to D and E from B. The value set now contains {0, 10, 20, *60*, *20*, inf}. 
+
+The visited node set and the distance values are as follows:
+
+pathSet = { true, true, false, false, false, false }
+
+distanceValues = { 0, 10, 20, 60, 20, max }
 
 ![Step Two](/structures-algorithms/assets/images/graph-c.jpg)
 
@@ -35,6 +48,7 @@ Next, node C is visited. Node C is connected to A, D, and E. The values are 20, 
 
 ![Step Three](/structures-algorithms/assets/images/graph-d.jpg)
 
+Next, node D is visited. Node D is connected to 
 ![Step Four](/structures-algorithms/assets/images/graph-e.jpg)
 
 ![Step Five](/structures-algorithms/assets/images/graph-f.jpg)
