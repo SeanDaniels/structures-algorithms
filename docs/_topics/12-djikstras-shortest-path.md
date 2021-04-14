@@ -11,7 +11,7 @@ The purpose of Djikstra's shortest path algorithm is to determine the shortest d
 
 # Example Graph
 
-Vertex A: C:20, B:10
+Vertex A: B:10, C:20
 Vertex B: A:10, D:50, E:10
 Vertex C: A:20, D:20, E:33
 Vertex D: B:50, C:20, E:20, F:2
