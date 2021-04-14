@@ -31,3 +31,5 @@ topics:
     url: /topics/longest-common-substring
   - title: "Levenshtein's Edit Distance"
     url: /topics/levenshteins-edit-distance
+  - title: "Djikstra's Shortest Path"
+    url: /topics/djikstras-shortest-path
