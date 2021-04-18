@@ -44,7 +44,15 @@ distanceValues = { 0, 10, 20, 60, 20, max }
 
 ![Step Two](/structures-algorithms/assets/images/graph-c.jpg)
 
-Next, node C is visited. Node C is connected to A, D, and E. The values are 20, 20, and 33. 
+Next, node C is visited. Node C is connected to A, D, and E. 
+
+Node D and E already have distance values. The value associated with travelling to node E from C is greater than the current distance value, but this is not the case for travelling from node D from node C.
+
+The visited node set and the distance values are as follows:
+
+pathSet = { true, true, true, false, false, false }
+
+distanceValues = { 0, 10, 20, *40*, 20, max }
 
 ![Step Three](/structures-algorithms/assets/images/graph-d.jpg)
 
