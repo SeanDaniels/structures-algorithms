@@ -42,17 +42,28 @@ class Graph{
             return false;
         }
 
-        void dfs_b(int targetNode){
-            boolVisited[targetNode] = true;
-            cout << targetNode << " ";
-            vector<int> currentNodeAdjacenyList = adjacencyList[targetNode];
-            vector<int> discovered;
-            for(auto it = currentNodeAdjacenyList.begin(); it != currentNodeAdjacenyList.end(); ++it){
-                cout << *it << ",";
-                if(*it != 0 && boolVisited[*it]==false){
-                    dfs_b(*it);
-                }
-            }
+        void dfs_b(int targetNode) {
+          boolVisited[targetNode] = true;
+          bool pathOut = false;
+          cout << "Visiting node " << targetNode << endl;
+          vector<int> currentNodeAdjacenyList = adjacencyList[targetNode];
+          for(int i = 0; i < numberOfNodes; i++){
+              if(currentNodeAdjacenyList[i] && !boolVisited[i]){
+                  cout << "Edge found:\n" << targetNode << "->" << i << endl;
+                  cout << "Preparing to visit node " << i << endl;
+                  pathOut = true;
+                  dfs_b(i);
+              }
+              else if(!currentNodeAdjacenyList[i]){
+                  cout << "Node " << targetNode << " has no path to node " << i << endl;
+              }
+              else if(boolVisited[i]){
+                  pathOut = true;
+                  cout << "Edge found:\n" << targetNode << "->" << i << endl;
+                  cout << "Node " << i << " has already been visited" << endl;
+              }
+          }
+          if(!pathOut) cout << "Node " << targetNode << " has no path out" << endl;
         }
 
         void dfs_a(int targetNode){
