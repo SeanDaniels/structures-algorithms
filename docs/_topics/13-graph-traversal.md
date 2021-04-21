@@ -121,10 +121,33 @@ The downside of this method (at least the way I implemented) is that it only loc
 What I have done to print shorter cycles in this scenario is store the node that has a back edge. The DFS function now checks if nodes within a given nodes adjacency list are back edges. If they are back edges, the current path is used a cycle, with the back edge node appended to it. This allows the cycle to be caught, even if the back edge node isn't visited. 
 
 ![Step One](/structures-algorithms/assets/images/cycle-detection/cd-init.jpg)
+
+All of the nodes are indicated as non visited and none of the nodes are included in the current path
+
 ![Step Two](/structures-algorithms/assets/images/cycle-detection/cd-1.jpg)
+
+Node 0 discovers node 1, node 0 is added to the current path. Node 1 is visited.
+
 ![Step Three](/structures-algorithms/assets/images/cycle-detection/cd-2.jpg)
+
+Node 1 discovers nodes 2, 3, and 4. Node 1 is added to current path. Node 2 is visited.
+
 ![Step Four](/structures-algorithms/assets/images/cycle-detection/cd-3.jpg)
+
+Node 2 doesn't discover any nodes. Remove node 2 from the current path and return to node 1.
+
 ![Step Five](/structures-algorithms/assets/images/cycle-detection/cd-4.jpg)
+
+Visit node 3.
+
 ![Step Six](/structures-algorithms/assets/images/cycle-detection/cd-5.jpg)
+
+Node 3 added to the current path, node 3 discovers node 4. Visit node 4.
+
 ![Step Seven](/structures-algorithms/assets/images/cycle-detection/cd-6.jpg)
+
+Node 4 discovers node 0. Node 0 is indicated in the current path. A cycle has been detected. No other nodes are discovered, return to node 3.
+
 ![Step Eight](/structures-algorithms/assets/images/cycle-detection/cd-7.jpg)
+
+Node 3 doesn't discover any other nodes, return to node 1. Node 1 identifies node 4, which has already been visited, as a back edge. A shorter cycle is discovered. 
