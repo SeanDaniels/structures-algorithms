@@ -7,7 +7,7 @@ class Graph{
         int numberOfNodes;
         vector<vector<int>> adjacencyList, cycleList;
         vector<int> visitedTable, unvisited, visitedSet;
-        vector<bool> boolVisited;
+        vector<bool> boolVisited, boolCycle;
 
         Graph(int nodes){
             numberOfNodes = nodes;
@@ -15,6 +15,7 @@ class Graph{
             for(int i = 0; i < numberOfNodes; i++){
                 visitedTable.push_back(0);
                 boolVisited.push_back(false);
+                boolCycle.push_back(false);
             }
         }
 
@@ -44,26 +45,32 @@ class Graph{
 
         void dfs_b(int targetNode) {
           boolVisited[targetNode] = true;
-          bool pathOut = false;
-          cout << "Visiting node " << targetNode << endl;
+          boolCycle[targetNode] = true;
           vector<int> currentNodeAdjacenyList = adjacencyList[targetNode];
           for(int i = 0; i < numberOfNodes; i++){
+            // if there is a an edge from the current node to some other node, and the other node has not been visited, visit it
               if(currentNodeAdjacenyList[i] && !boolVisited[i]){
-                  cout << "Edge found:\n" << targetNode << "->" << i << endl;
-                  cout << "Preparing to visit node " << i << endl;
-                  pathOut = true;
                   dfs_b(i);
               }
-              else if(!currentNodeAdjacenyList[i]){
-                  cout << "Node " << targetNode << " has no path to node " << i << endl;
-              }
-              else if(boolVisited[i]){
-                  pathOut = true;
-                  cout << "Edge found:\n" << targetNode << "->" << i << endl;
-                  cout << "Node " << i << " has already been visited" << endl;
+              // if there is an edge from the current node to some other node, and the other node *has* been visited
+              else if(currentNodeAdjacenyList[i] && boolVisited[i]){
+                // if the current node has been visited during the current path traversal, and the current node is not the
+                if( i != targetNode && boolCycle[i]){
+                  vector<int> thisCycle;
+                  // a cycle has been found
+                  for(int j = 0; j < numberOfNodes; j++){
+                    // for all nodes in this cycle, add to a temp cycle list
+                    if(boolCycle[j]) thisCycle.push_back(j);
+                  }
+                  // add the iterated to node to the cycle
+                  thisCycle.push_back(i);
+                  // add this cycle to collection of cycles
+                  cycleList.push_back(thisCycle);
+                }
               }
           }
-          if(!pathOut) cout << "Node " << targetNode << " has no path out" << endl;
+          // remove this node from cycle candidacy
+          boolCycle[targetNode] = false;
         }
 
         void dfs_a(int targetNode){
@@ -104,10 +111,11 @@ class Graph{
           if (visited[targetNode] == false) {
             visited[targetNode] = true;
             recStack[targetNode] = true;
-            for (auto it = adjacencyList[targetNode].begin(); it != adjacencyList[targetNode].end(); it++) {
+            for (auto it = adjacencyList[targetNode].begin();
+                 it != adjacencyList[targetNode].end(); it++) {
               if (!visited[*it] && cycleUtility(*it, visited, recStack)) {
                 return true;
-              } else if (recStack[*it]){
+              } else if (recStack[*it]) {
                 return true;
               }
             }
@@ -116,21 +124,21 @@ class Graph{
           return false;
         }
 
-        bool hasCycle(){
-            bool *visited = new bool[numberOfNodes];
-            bool *recStack = new bool[numberOfNodes];
-            for(int i = 0; i < numberOfNodes; i++){
-                visited[i] = false;
-                recStack[i] = false;
-            }
-            for(int i = 0; i < numberOfNodes; i++){
-                cout << numberOfNodes << endl;
-                cout << "Checking for cycle with node " << i << endl;
-                if(cycleUtility(i, visited, recStack)) return true;
-            }
-            return false;
+        bool hasCycle() {
+          bool *visited = new bool[numberOfNodes];
+          bool *recStack = new bool[numberOfNodes];
+          for (int i = 0; i < numberOfNodes; i++) {
+            visited[i] = false;
+            recStack[i] = false;
+          }
+          for (int i = 0; i < numberOfNodes; i++) {
+            cout << numberOfNodes << endl;
+            cout << "Checking for cycle with node " << i << endl;
+            if (cycleUtility(i, visited, recStack))
+              return true;
+          }
+          return false;
         }
-
 };
 
 int main(){
@@ -147,8 +155,16 @@ int main(){
     myGraph.addEdge(1,3);
     myGraph.addEdge(1,4);
     myGraph.addEdge(3,4);
+    myGraph.addEdge(3,0);
     myGraph.addEdge(4,0);
     myGraph.printAdjacencyList();
     myGraph.dfs_b(0);
+    for(auto x: myGraph.cycleList){
+      for(auto it = x.begin(); it != x.end(); ++it){
+        cout << *it;
+        if(it+1 == x.end()) cout << endl;
+        else cout << "->";
+      }
+    }
     return 0;
 }
