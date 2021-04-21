@@ -33,3 +33,5 @@ topics:
     url: /topics/levenshteins-edit-distance
   - title: "Djikstra's Shortest Path"
     url: /topics/djikstras-shortest-path
+  - title: "Graph Traversal"
+    url: /topics/graph-traversal
