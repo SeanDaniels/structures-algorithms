@@ -46,6 +46,7 @@ public:
       return true;
     return false;
   }
+
   void dfs_b(int targetNode) {
     boolVisited[targetNode] = true;
     boolCycle[targetNode] = true;

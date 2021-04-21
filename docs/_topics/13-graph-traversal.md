@@ -120,6 +120,61 @@ The downside of this method (at least the way I implemented) is that it only loc
 
 What I have done to print shorter cycles in this scenario is store the node that has a back edge. The DFS function now checks if nodes within a given nodes adjacency list are back edges. If they are back edges, the current path is used a cycle, with the back edge node appended to it. This allows the cycle to be caught, even if the back edge node isn't visited. 
 
+Here is the code:
+```c++
+  void dfs(int targetNode) {
+    boolVisited[targetNode] = true;
+    boolCycle[targetNode] = true;
+    vector<int> currentNodeAdjacenyList = adjacencyList[targetNode];
+    for (int i = 0; i < numberOfNodes; i++) {
+      // if there is a an edge from the current node to some other node, and the
+      // other node has not been visited, visit it
+      if (currentNodeAdjacenyList[i] && !boolVisited[i]) {
+        dfs_b(i);
+      }
+      // if there is an edge from the current node to some other node, and the
+      // other node *has* been visited
+      else if (currentNodeAdjacenyList[i] && boolVisited[i]) {
+        // if the current node has been visited during the current path
+        // traversal, and the current node is not the
+        vector<int> thisCycle;
+        if (i != targetNode && boolCycle[i]) {
+          cout << "Back edge from node " << targetNode << " to node " << i
+               << endl;
+          backEdges.push_back(targetNode);
+          // a cycle has been found
+          for (int j = 0; j < numberOfNodes; j++) {
+            // for all nodes in this cycle, add to a temp cycle list
+            if (boolCycle[j])
+              thisCycle.push_back(j);
+          }
+          // add front node to back, for clarity while printing
+          thisCycle.push_back(thisCycle[0]);
+          // add this cycle to collection of cycles
+          cycleList.push_back(thisCycle);
+          thisCycle.clear();
+        }
+        if (i != targetNode && isBackEdge(i)) {
+          cout << "Current node " << targetNode
+               << " has path to known back edge (" << i << ")" << endl;
+          for (int j = 0; j < numberOfNodes; j++) {
+            if (boolCycle[j])
+              thisCycle.push_back(j);
+          }
+          // add back edge src node to cycle
+          thisCycle.push_back(i);
+          // add front node to back, for clarity while printing
+          thisCycle.push_back(thisCycle[0]);
+          cycleList.push_back(thisCycle);
+          thisCycle.clear();
+        }
+      }
+    }
+    // remove this node from cycle candidacy
+    boolCycle[targetNode] = false;
+  }
+ 
+```
 ![Step One](/structures-algorithms/assets/images/cycle-detection/cd-init.jpg)
 
 All of the nodes are indicated as non visited and none of the nodes are included in the current path
