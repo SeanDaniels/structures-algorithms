@@ -120,4 +120,11 @@ The downside of this method (at least the way I implemented) is that it only loc
 
 What I have done to print shorter cycles in this scenario is store the node that has a back edge. The DFS function now checks if nodes within a given nodes adjacency list are back edges. If they are back edges, the current path is used a cycle, with the back edge node appended to it. This allows the cycle to be caught, even if the back edge node isn't visited. 
 
-The code that I produced is a basically 'show all cycles in this graph'. 
+![Step One](/structures-algorithms/assets/images/cycle-detection/cd-init.jpg)
+![Step Two](/structures-algorithms/assets/images/cycle-detection/cd-1.jpg)
+![Step Three](/structures-algorithms/assets/images/cycle-detection/cd-2.jpg)
+![Step Four](/structures-algorithms/assets/images/cycle-detection/cd-3.jpg)
+![Step Five](/structures-algorithms/assets/images/cycle-detection/cd-4.jpg)
+![Step Six](/structures-algorithms/assets/images/cycle-detection/cd-5.jpg)
+![Step Seven](/structures-algorithms/assets/images/cycle-detection/cd-6.jpg)
+![Step Eight](/structures-algorithms/assets/images/cycle-detection/cd-7.jpg)
