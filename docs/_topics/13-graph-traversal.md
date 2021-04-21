@@ -10,9 +10,14 @@ Graph traversal is the method with which a graph is iterated through. There are 
 
 # DFS
 
-DFS uses a stack to store the nodes that are being visited. Edges that lead to an unvisited node are called 'discovery edges'.
+DFS uses some data structure to track the nodes that have been visited. Each node may have multiple exit paths, and multiple exit paths may lead to the same node. In order to avoid visiting the same node multiple times, a record must be kept of where the graph traversing function has been and where it still needs to go. 
 
 There are both iterative and recursive methods for performing a depth first search on graph. This description outlines a recursive approach.
+
+For a recursive approach, there are multiple methods for tracking the progress of the DFS function. This example will use a vector of boolean values to record which nodes have been visited and which haven't. This vector is initialized to contain all false values each time the DFS function starts.
+
+When each node is visited, the node's that are pointed to by the path(s) out of the current node will be referred to as 'discovered'. The same node can be discovered by multiple other nodes, but the node will only be visited if it hasn't been visited before. 
+
 
 The graph is represented using a vector of vectors. Each node has a vector, and each node's vector indicates if there is an edge from the given node to the other nodes in the graph. 
 
@@ -30,8 +35,22 @@ When laid out as a table, this is how the example graph is represented:
 | 3 | 0 | 0 | 0 | 0 | 1 |
 | 4 | 1 | 0 | 0 | 0 | 0 |
 
+
 DFS works by recursively visiting the nodes that are connected to the current node. 
 
+Here is an example implementation of a recursive DFS function:
+```c++
+void dfs(int targetNode) {
+    boolVisited[targetNode] = true;
+    vector<int> currentNodeAdjacenyList = adjacencyList[targetNode];
+    for(int i = 0; i < numberOfNodes; i++){
+    // if there is a an edge from the current node to some other node, and the other node has not been visited, visit it
+        if(currentNodeAdjacenyList[i] && !boolVisited[i]){
+            dfs_b(i);
+        }
+    }
+}
+```
 If DFS was executed on node 0:
 
 ![Step One](/structures-algorithms/assets/images/graph-traversal/gt-1.jpg)
@@ -88,3 +107,17 @@ Edge from node 1 to node 4. Node 4 has been visted. No other edges from node 1. 
 No other edges from node 0, return.
 
 ![Step Eight](/structures-algorithms/assets/images/graph-traversal/gt-8.jpg)
+
+# Detecting Cycles
+
+DFS can be modified to detect cycles in a graph. A cycle is when a path creates a loop. 
+
+In order to detect a path, the nodes that have been visited during a given iteration through the graph need to be stored. This is different than tracking some shared structure that contains visit information. Discovering a node twice doesn't equate to locating a cycle. Since the above DFS implentation is recursive, the function can be extended to update a 'cycle' vector each time the DFS function is called.
+
+The cycle vector sets the visited nodes entry to true upon entry into the DFS function, and sets it back to false when exiting the function. 
+
+The downside of this method (at least the way I implemented) is that it only locates the longest cycle. The graph has a shorter cycle of node 0 -> node 1 -> node 4 -> node 0, but since node 4 is visited in node 3's recursion, it isn't re-visited by node 1's recursion, which stops the shorter path from being identified as a a cycle.
+
+What I have done to print shorter cycles in this scenario is store the node that has a back edge. The DFS function now checks if nodes within a given nodes adjacency list are back edges. If they are back edges, the current path is used a cycle, with the back edge node appended to it. This allows the cycle to be caught, even if the back edge node isn't visited. 
+
+The code that I produced is a basically 'show all cycles in this graph'. 
