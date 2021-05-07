@@ -1,9 +1,3 @@
-##
-# Project Title
-#
-# @file
-# @version 0.1
-#
 CC = g++
 CCFLAGS = -g -Wall -std=c++0x
 DEPS = bst.h
