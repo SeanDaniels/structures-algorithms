@@ -5,8 +5,7 @@ layout: single
 toc: true
 ---
 
-
-Lenshtein's Edit Distance is an algorithm for determining the difference between two strings. The algorithm determines the minimum number of changes necessary to transform one string into another string. The changes available to be made are:
+Levenshtein's Edit Distance is an algorithm for determining the difference between two strings. The algorithm determines the minimum number of changes necessary to transform one string into another string. The changes available to be made are:
 
 - Insert a character
 - Delete a character
