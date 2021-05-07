@@ -77,17 +77,13 @@ else{
 }
 ```
 # Deleting
-In order to successfully remove a node from the BST, the node must be deleted and any pointers referencing the node must be updated. 
+In order to remove a node from the BST, the node must be deleted and any pointers referencing the node must be updated. 
 
 While removing a node from a BST, the underlying structure of the BST must be retained. This may require updating the removed node's parents and children. This is summarized in the following 3 cases:
 
 - The removed node has no children
 - The removed node has either a left child or a right child (1 child)
 - The removed node has both a left child and a right child (2 children)
-
-
-In order to remove a node from a BST
-Removing a node from a BST 
 
 
 ## No Children
@@ -118,7 +114,7 @@ bool BST::noChildren(Node *node, Node *parent) {
 
 ## One Child
 
-When deleting a node that has one child, the parent's pointer needs to be updated to point to what child is currently pointing to. 
+When deleting a node that has one child, the parent's pointer needs to be updated to point to what the child is currently pointing to. 
 
 ```c++
 bool BST::oneChild(Node *node, Node *parent){
@@ -154,13 +150,13 @@ bool BST::oneChild(Node *node, Node *parent){
 
 ## Two Children
 
-The third case can be confusing. The goal is to keep remain true the underlying structure a binary tree. 
+The third case can be confusing. The goal is to keep the underlying structure a binary tree. 
 
-A common approach is to locate the smallest contained in the node's subtree. This node will be put where the current node is located, and it is referred to as the successor node.
+A common approach is to locate the smallest value contained in the node's subtree. This node will be put where the current node is located, and it is referred to as the successor node.
 
 Locating the successor done by traversing the entirety of the node's left subtree. While moving down the subtree, a record must be kept of the previous node visited, the successor node's parent. 
 
-Once the lowest node is located, it is handled by the one of the above two functions (no children or two children). This node is going to be put where the node being deleted is presently located, so it must be deleted from it's current position. Finally, the successor is updated to point at the deleted node's children. 
+Once the lowest node is located, it is handled by one of the above two functions (no children or two children). This node is going to be put where the node being deleted is presently located, so it must be deleted from it's current position. Finally, the successor is updated to point at the deleted node's children. 
 
 ```c++
 void BST::twoChildren(Node *node, Node *parent){

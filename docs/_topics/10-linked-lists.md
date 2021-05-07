@@ -40,6 +40,7 @@ class ll {
 ```
 
 The ll class contains functions which act of the list structure. The class is instantiated with it's head pointing to nothing.
+
 ## Adding a node to the list
 
 There are three cases for adding a node to linked list:

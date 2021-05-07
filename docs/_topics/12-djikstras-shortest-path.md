@@ -13,7 +13,6 @@ The purpose of Djikstra's shortest path algorithm is to determine the shortest d
 
 This is the graph used for this example:
 
-
 ![Start Graph](/structures-algorithms/assets/images/graph-a.jpg)
 
 # Method

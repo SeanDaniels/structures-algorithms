@@ -4,14 +4,15 @@ permalink: /topics/levenshteins-edit-distance/
 layout: single
 toc: true
 ---
-# What is it
-Difference between two strings. The minimum number of changes necessary to transform one string into another string. The changes available to be made are:
+
+
+Lenshtein's Edit Distance is an algorithm for determining the difference between two strings. The algorithm determines the minimum number of changes necessary to transform one string into another string. The changes available to be made are:
 
 - Insert a character
 - Delete a character
 - Replace a character
 
-## Examples
+## Example
 
 pet
 get

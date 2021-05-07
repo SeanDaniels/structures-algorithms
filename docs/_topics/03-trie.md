@@ -11,8 +11,6 @@ A trie, also refered to as a digital tree or prefix tree, is a search tree used 
 
 Nodes in a trie do not store a key value. Trie node's are defined by their position with the structure.
 
-The first structure I covered was a binary search tree. In that structure, a node contained two pointers. My understanding of a trie is that it can be built as an n-ary tree, meaning that each node can point to n child nodes. 
-
 Typical trie node's have two primary components:
 - Some structure containing pointers to the node's children
 - A marker designating node as leaf
@@ -30,43 +28,6 @@ TrieNode* children[n];
 bool isLeaf;
 };
 ```
-
-# Initial Thoughts
-
-The idea of storing a vector or array of pointers seems like a bad one. The most common implementation I've found used a pointer for each letter of the alphabet, for each node. A character pointer is four bytes (I think), so each node requires 4*26 bytes of memory. That seems like a lot. Ten nodes would require a kilobyte. 
-
-That seems like a lot of over head for a data structure. 
-
-I also think that as nodes are added to the trie, the number of child nodes decreases. For example, it's reasonable to think that the root node points to the most other nodes, but a node at the lowest level of the trie points to no other nodes. I wonder if there is a way to use vectors or some other dynamic structure to hold the pointers, and save some space overhead.
-
-I am going to pause here and look that up
-
-Here's what I got: 
-running the snippet
-```c++
-vector<char> tmp;
-cout << sizeof(tmp) << endl;
-```
-returns 24.
-
-After running some tests, I realized I was confused about the way sizing and memory allocation works. 
-
-I investigated the following structure:
-
-```c++
-struct ObjPointObj{
-    char eos;
-    ObjPointObj *collection;
-};
-
-int main(){
-    std::cout << sizeof(ObjPointObj) << std::endl;
-}
-
-```
-
-The size of 'ObjPointObj' is 16 bytes. A single pointer (on my system) is 8 bytes, and a char variable is 1 byte. It turns out that the compiler I am using allocates space with respect to byte alignment.
-
 
 # An Example Use Case
 
@@ -90,13 +51,10 @@ To accomplish this, two things happened:
 
 If I were to add the word 'bark' to the structure, four nodes would be added. The idea of prefixing is important. For a given word, I only reference existing nodes until a novel character is introduced. If the first character of the string is not present in the pointer list of the root node, I need to start a new branch of the trie.
 
-# Building the Structure
+## Structure
 
-I have been building the example structures with c++ being the programming language. I hope that it's clear that the underlying logic and algorithms for these structures are not linked to any particular language. For the sake of continuity, I am going to again use c++ for the trie structure. 
+Here is the tree node structure:
 
-Continuing with the example above, I'll build a trie that processes strings. The characters of the string will be from the english alphabet, meaning each node can potentially point to 26 other nodes.
-## Class
-I'll be doing this a class object, so my trie node is defined as:
 ```c++
 class TrieNode {
   public:
@@ -200,8 +158,3 @@ TrieNode* Trie::remove(TrieNode *currentNode, std::string thisString, int curren
     return currentNode;
 }
 ```
-
-# Other Thoughts
-Like I mentioned above, most example implementations that I have found use a fixed sized array for holding a node's pointers, the ones that point to the node's children. I don't like that approach, so I have decided to use a vector. Vectors are pretty crazy, and I wouldn't begin to try and teach someone else the intricaces of them. What I will say is that they are extendible, which means that I don't have to use a fixed size when creating my trie. 
-
-The downside here is trying to figure the implementation of a trie with vectors. With a fix sized array, all pointers are added to all node pointer arrays at the same position. For example, if a trie only contained contained one entry, the word 'ark', and the trie processed strings, meaning that when a string was added to the trie, traversing the nodes of the trie could produce the string. 
