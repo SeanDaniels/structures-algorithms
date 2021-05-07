@@ -4,7 +4,7 @@ permalink: /topics/binary-search/
 layout: single
 toc: true
 ---
-[Default Button Text](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/searching/code/bst){: .btn}
+[Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/searching/code/bst){: .btn}
 ![Black Red](/structures-algorithms/assets/images/black-red.jpg)
 <br/><br/>
 One method of searching through a data structure, such as an array, is iterate through each element of the structure until the desired element is found. This method is known as a linear search. 
