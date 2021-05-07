@@ -4,7 +4,6 @@ permalink: /topics/binary-search/
 layout: single
 toc: true
 ---
-[Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/searching/code/bst){: .btn}
 <br/><br/>
 ![Black Red](/structures-algorithms/assets/images/black-red.jpg)
 <br/><br/>
@@ -182,3 +181,5 @@ void BST::twoChildren(Node *node, Node *parent){
 };
 ```
 
+## Code
+[Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/searching/code/bst){: .btn}
