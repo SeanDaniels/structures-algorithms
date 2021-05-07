@@ -5,13 +5,14 @@ layout: single
 toc: true
 ---
 [Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/searching/code/bst){: .btn}
+<br/><br/>
 ![Black Red](/structures-algorithms/assets/images/black-red.jpg)
 <br/><br/>
 One method of searching through a data structure, such as an array, is iterate through each element of the structure until the desired element is found. This method is known as a linear search. 
 
 In some scenarios, it is wasteful to visit every element of a data structure to locate a particular element. A binary search removes some of this overhead by halving it's search range until the element is located. A binary search requires the structure being searched is sorted.
 
-# Binary Search Tree
+## Binary Search Tree
 
 ![Binary Search Tree](/structures-algorithms/assets/images/bst.jpg)
 
@@ -19,7 +20,7 @@ A binary search tree (BST) is a data structure consisting of a single 'root' nod
 
 A BST allows binary search for looking up, adding, and removing items
 
-# Time Complexity in Big O Notation
+## Time Complexity in Big O Notation
 
 | Algorithm | Average  | Worst Case |
 |:----------|:---------|:-----------|
@@ -29,10 +30,10 @@ A BST allows binary search for looking up, adding, and removing items
 | Delete    | O(log n) | O(n)       |
 
 
-# Nodes
+## Nodes
 At the most basic level, a node is structure that contains a key value and a pointer to it's own left subtree and a pointer to it's own right subtree
 
-# Searching
+## Searching
 A BST can be searched iteratively or recursively
 
 The pseudo code for searching a BST is as follows:
@@ -51,7 +52,7 @@ while(nodePtr){
 }
 return nodePtr;
 ```
-# Inserting
+## Inserting
 Inserting a new node into a BST is accomplished with the following routine:
 - Create a new node
 - Locate appropriate position for new node
@@ -76,7 +77,7 @@ else{
     }
 }
 ```
-# Deleting
+## Deleting
 In order to remove a node from the BST, the node must be deleted and any pointers referencing the node must be updated. 
 
 While removing a node from a BST, the underlying structure of the BST must be retained. This may require updating the removed node's parents and children. This is summarized in the following 3 cases:
@@ -86,7 +87,7 @@ While removing a node from a BST, the underlying structure of the BST must be re
 - The removed node has both a left child and a right child (2 children)
 
 
-## No Children
+### No Children
 
 The most straight forward case. The node's parent's pointers need to be disassociated from the node being deleted.
 
@@ -112,7 +113,7 @@ bool BST::noChildren(Node *node, Node *parent) {
 ```
 
 
-## One Child
+### One Child
 
 When deleting a node that has one child, the parent's pointer needs to be updated to point to what the child is currently pointing to. 
 
@@ -148,7 +149,7 @@ bool BST::oneChild(Node *node, Node *parent){
 }
 ```
 
-## Two Children
+### Two Children
 
 The third case can be confusing. The goal is to keep the underlying structure a binary tree. 
 
