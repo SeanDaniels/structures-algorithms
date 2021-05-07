@@ -158,3 +158,6 @@ TrieNode* Trie::remove(TrieNode *currentNode, std::string thisString, int curren
     return currentNode;
 }
 ```
+
+## Code
+[Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/searching/code/trie){: .btn}

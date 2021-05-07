@@ -94,3 +94,6 @@ The merge call finishes the third split subroutine and the function returns to t
 The flow of this merge is pictured below:
 
 ![Example Sort 3](/structures-algorithms/assets/images/merge-sort-3.png)
+
+## Code
+[Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/sorting/merge-sort){: .btn}

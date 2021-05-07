@@ -33,3 +33,6 @@ When doing a directory split, how should the new directory be updated to point a
 When updating, a new directory is created, but we don't need to add a bucket for each directory. So the directories that get added should point to existing buckets.
 
 After creating the new directories, the content of the overflowing bucket needs to be rehashed. At what point is a new bucket created, and what is the logic for determining that condition?
+
+## Code
+[Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/searching/code/eht){: .btn}

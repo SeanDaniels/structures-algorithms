@@ -206,3 +206,6 @@ Node 4 discovers node 0. Node 0 is indicated in the current path. A cycle has be
 ![Step Eight](/structures-algorithms/assets/images/cycle-detection/cd-7.jpg)
 
 Node 3 doesn't discover any other nodes, return to node 1. Node 1 identifies node 4, which has already been visited, as a back edge. A shorter cycle is discovered. 
+
+## Code
+[Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/graphs/traversal){: .btn}

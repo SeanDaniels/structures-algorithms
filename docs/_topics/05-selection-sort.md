@@ -73,3 +73,6 @@ Selection sort performs less swaps than insertion sort.
 ## Disadvantage Versus Insertion Sort
 
 Selection sort performs a greater number of comparisons than insertion sort. Insertion sort usually performs better.
+
+## Code
+[Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/sorting/selection-sort){: .btn}

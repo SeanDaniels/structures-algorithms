@@ -176,3 +176,6 @@ for(size_t i = 1; i < values.size(); i++){
     }
 }
 ```
+
+## Code
+[Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/dynamic-programming/code/knapsack){: .btn}

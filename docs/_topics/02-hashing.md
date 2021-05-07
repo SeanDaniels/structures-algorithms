@@ -128,3 +128,6 @@ bool insertCheck(int value){
 ## Searching
 
 Locating an element in hash table again involves generating the key for the element, and checking the table at the generated key's index. 
+
+## Code
+[Link to code](https://github.com/SeanDaniels/structures-algorithms/tree/gh-pages/searching/code/hash){: .btn}
